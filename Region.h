@@ -1,57 +1,52 @@
 #ifndef Region_h
 #define Region_h
 #include <vector>
+#include <map>
+#include <iostream>
 #include "sc2api/sc2_api.h"
-#include "Neutral.h"
-#include "spatial/box_multiset.hpp"
-#include "spatial/box_multimap.hpp"
 
-//Used to keep track of units in the region
-struct UnitPosition {
-    sc2::Point2D position;
-    sc2::Unit *unit;
-};
+typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
 
-//Used to access arbitrary points in the region
-struct point2d_accessor {
-    int operator() (spatial::dimension_type dim, const sc2::Point2D p) const {
-        switch(dim) {
-            case 0: return p.x;
-            case 1: return p.y;
-            default: throw std::out_of_range("dim");
-        }
-    }
-};
-
-
-//Used to access UnitPositions in the region
-struct unitPosition_accessor {
-    int operator() (spatial::dimension_type dim, const UnitPosition up) const {
-        switch(dim) {
-            case 0: return up.position.x;
-            case 1: return up.position.y;
-            default: throw std::out_of_range("dim");
-        }
-    }
-};
+class RegionEdge;
 
 class Region {
 public:
     //Gets the number of points within the region, which corresponds to it's area
     int getArea() {return m_points.size();}
     
-    //Inserts unit to the region
-    void insertUnit(sc2::Unit *unit);
+    //Returns the edges of the region
+    std::vector<RegionEdge> getEdges(){return m_edges;}
     
-    //Returns true if region contains the unit
-    bool contains(sc2::Unit *unit);
+    //Returns the units and positions occupying the region
+    const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
     
-    //Get nearest unit to the point
-    sc2::Unit * getNearestUnit(sc2::Point2D point);
+    size_t getId(){return m_id;}
     
 private:
-    spatial::box_multiset<2, sc2::Point2D, spatial::accessor_less<point2d_accessor, sc2::Point2D>> m_points;
-    spatial::box_multimap<2, UnitPosition, spatial::accessor_less<unitPosition_accessor, UnitPosition>> m_unitPositions;
-    int m_id;
+    std::vector<sc2::Point2D> m_points;
+    std::vector<RegionEdge> m_edges;
+    std::vector<UnitPosition> m_neutralUnitPositions;
+    
+    size_t m_id;
 };
+
+enum EdgeType {
+    wall,
+    drop,
+    impassible
+};
+
+class RegionEdge {
+public:
+    //Returns the regions this edge separates
+    const std::pair<const Region *, const Region *> & getRegions(){return m_regions;}
+    const std::vector<sc2::Point2D> getPoints(){return m_points;}
+    EdgeType getEdgeType(){return m_edgeType;}
+private:
+    std::pair<const Region *, const Region *> m_regions;
+    std::vector<sc2::Point2D> m_points;
+    EdgeType m_edgeType;
+};
+
 #endif /* Region_h */
+

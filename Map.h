@@ -1,25 +1,25 @@
 #ifndef Map_h
 #define Map_h
 #include "ChokePoint.h"
-#include "spatial/box_multimap.hpp"
 #include <memory>
 
-//Used to access arbitrary points in the region
-struct point2d_accessor {
-    int operator() (spatial::dimension_type dim, const sc2::Point2D p) const {
-        switch(dim) {
-            case 0: return p.x;
-            case 1: return p.y;
-            default: throw std::out_of_range("dim");
-        }
-    }
-};
 
-typedef spatial::box_multimap<2, sc2::Point2D, Tile, spatial::accessor_less<point2d_accessor, sc2::Point2D>> TileContainer;
-typedef spatial::box_multimap<2, sc2::Point2D, sc2::Unit*, spatial::accessor_less<point2d_accessor, sc2::Point2D>> UnitPositionContainer;
+
+
 
 class Map {
 public:
+    Map(){}
+    Map(sc2::Agent* bot){
+        m_bot = bot;
+        m_width  = m_bot->Observation()->GetGameInfo().width;
+        m_height = m_bot->Observation()->GetGameInfo().height;
+    }
+    
+    struct GreaterTile {
+        bool operator()(std::shared_ptr<TilePosition> &a, std::shared_ptr<TilePosition> &b) const { return a->second->getDistNearestUnpathable() > b->second->getDistNearestUnpathable(); }
+    };
+    
     //Gets the map instance running right now
     const Map & getInstance();
     
@@ -40,18 +40,25 @@ public:
     //Returns the shortest path in choke-points from start to end
     const CPPath & getShortestPath(sc2::Point2D start, sc2::Point2D end);
     
-    void addTile(sc2::Point2D pos, Tile& tile){
-        //std::cout << "Adding tile at " << pos.x << ", " << pos.y << std::endl;
+    //Pushes tile into the k-d tree
+    void addTile(sc2::Point2D pos, std::shared_ptr<Tile> tile){
         m_tilePositions.insert(std::make_pair(pos, tile));
-        //m_tilePositions.insert(pos);
     }
     
-    size_t size(){return m_tilePositions.size();}
+    size_t size() { return m_tilePositions.size(); }
+    
+    TilePositionContainer getTilePositions() { return m_tilePositions; }
+    
+    void setBot(sc2::Agent* bot){m_bot = bot;
+        m_width  = m_bot->Observation()->GetGameInfo().width;
+        m_height = m_bot->Observation()->GetGameInfo().height;}
     
 protected:
+    sc2::Agent* m_bot;
     static std::unique_ptr<Map> m_gInstance;
     UnitPositionContainer m_unitPositions;
-    TileContainer m_tilePositions;
+    TilePositionContainer m_tilePositions;
+    std::vector<std::shared_ptr<TilePosition>> m_buildableTiles;
     
     sc2::Point2D m_maxPlayable;
     sc2::Point2D m_minPlayable;
@@ -62,4 +69,3 @@ protected:
 };
 
 #endif /* Map_h */
-

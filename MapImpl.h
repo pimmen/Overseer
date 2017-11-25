@@ -7,55 +7,73 @@
 
 #ifndef MapImpl_h
 #define MapImpl_h
+#include <algorithm>
 #include "Map.h"
-#include "spatial/neighbor_iterator.hpp"
 
 class MapImpl : public Map {
 private:
-    sc2::Agent* m_bot;
-public:
-    MapImpl(sc2::Agent* bot){m_bot = bot;}
-    MapImpl(){};
     
-    void setBot(sc2::Agent* bot){m_bot = bot;}
+public:
+    ~MapImpl(){
+        std::cout << "MapImpl destructor" << std::endl;
+    }
     
     void Initialize(){
-        m_width  = m_bot->Observation()->GetGameInfo().width;
-        m_height = m_bot->Observation()->GetGameInfo().height;
         
-        std::vector<sc2::Point2D> buildablePoints;
+        CreateTiles();
         
-        for (size_t x(0); x < m_width; ++x)
-        {
-            for (size_t y(0); y < m_height; ++y)
-            {
+        ComputeAltitudes();
+        
+        ComputeRegions();
+        
+    }
+    
+    void CreateTiles() {
+        //Create all tiles, add them to multimap if not buildable add them to a vector if they are
+        for (size_t x(0); x < m_width; ++x) {
+            for (size_t y(0); y < m_height; ++y) {
                 sc2::Point2D pos(x,y);
-
-                bool buildable = m_bot->Observation()->IsPlacable(pos);
                 
+                bool pathable = m_bot->Observation()->IsPlacable(pos);
                 
-                if(buildable) {
-                    buildablePoints.push_back(pos);
+                std::shared_ptr<Tile> tile = std::make_shared<Tile>();
+                tile->setBuildable(pathable);
+                
+                if(pathable) {
+                    m_buildableTiles.push_back(std::shared_ptr<TilePosition>(new TilePosition(std::make_pair(pos, tile))));
                 } else {
-                    Tile tile;
-                    tile.setBuildable(buildable);
+                    tile->setDistNearestUnpathable(0);
                     addTile(pos, tile);
                 }
             }
         }
-        
-        for(int i = 0; i < buildablePoints.size(); i++) {
-            sc2::Point2D pos = buildablePoints.at(i);
-            std::cout << "Neighbor search from " << pos.x << ", " << pos.y << std::endl;
-            spatial::neighbor_iterator<TileContainer> iter = spatial::neighbor_begin(m_tilePositions, pos);
+    }
+    
+    void ComputeAltitudes() {
+        //For each buildable tile, find the distance to the nearest unbuildable tile
+        for(auto& buildableTile: m_buildableTiles) {
+            sc2::Point2D pos = buildableTile->first;
             
-            while(iter != spatial::neighbor_end(m_tilePositions, pos)) {
-                std::cout << iter->second.Buildable() << std::endl;
-                if(!(iter->second.Buildable())){
-                    std::cout << "Distance to nearest unplaceable: " << spatial::distance(iter) << std::endl;
+            for(neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
+                if(!(iter->second->Buildable())){
+                    buildableTile->second->setDistNearestUnpathable(distance(iter));
                     break;
                 }
             }
+        }
+        
+        std::sort(m_buildableTiles.begin(), m_buildableTiles.end(), GreaterTile());
+        
+        //Push buildable tiles into k-d tree
+        for(const auto& buildableTile: m_buildableTiles) {
+            addTile(buildableTile->first, buildableTile->second);
+        }
+    }
+    
+    void ComputeRegions() {
+        std::vector<Region> tmp_regions(1);
+        for(auto& buildableTile: m_buildableTiles) {
+            
         }
     }
 };

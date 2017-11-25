@@ -1,13 +1,36 @@
 #ifndef Region_h
 #define Region_h
 #include <vector>
+#include <queue>
 #include <map>
 #include <iostream>
+#include "spatial/box_multimap.hpp"
+#include "spatial/neighbor_iterator.hpp"
+#include "spatial/ordered_iterator.hpp"
 #include "sc2api/sc2_api.h"
 
-typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
 
+
+class Tile;
 class RegionEdge;
+
+using namespace spatial;
+
+//Used to access arbitrary points in the region
+struct point2d_accessor {
+    int operator() (dimension_type dim, const sc2::Point2D p) const {
+        switch(dim) {
+            case 0: return p.x;
+            case 1: return p.y;
+            default: throw std::out_of_range("dim");
+        }
+    }
+};
+
+typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
+typedef std::pair<sc2::Point2D, std::shared_ptr<Tile>> TilePosition;
+typedef box_multimap<2, sc2::Point2D, std::shared_ptr<Tile>, accessor_less<point2d_accessor, sc2::Point2D>> TilePositionContainer;
+typedef box_multimap<2, sc2::Point2D, sc2::Unit*, accessor_less<point2d_accessor, sc2::Point2D>> UnitPositionContainer;
 
 class Region {
 public:
@@ -49,4 +72,3 @@ private:
 };
 
 #endif /* Region_h */
-

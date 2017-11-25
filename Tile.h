@@ -19,7 +19,15 @@ public:
     
     void setBuildable(bool buildable){m_tileInfo.buildable = buildable;}
     
-    void setDistNearestUnpathable(size_t dist){m_distNearestUnpathable = dist;}
+    void setDistNearestUnpathable(float dist){m_distNearestUnpathable = dist;}
+    
+    float getDistNearestUnpathable() const {return m_distNearestUnpathable;}
+    
+    void setRegionId(size_t regionId) {
+        m_regionId = regionId;
+    }
+    
+    size_t getRegionId(){return m_regionId;}
     
 private:
     struct TileInfo {
@@ -29,8 +37,8 @@ private:
         bool            doodad:true;
     };
     
-    size_t m_areaId;
-    size_t m_distNearestUnpathable;
+    size_t m_regionId;
+    float m_distNearestUnpathable;
     TileInfo m_tileInfo;
 };
 

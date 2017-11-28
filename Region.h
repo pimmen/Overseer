@@ -45,8 +45,14 @@ public:
     
     size_t getId(){return m_id;}
     
+    //Used by Overseer's internal functions
+    void AddTilePosition(shared_ptr<TilePosition> tilePosition) {
+        tilePosition->second->setRegionId(getRegionId());
+        
+    }
+    
 private:
-    std::vector<sc2::Point2D> m_points;
+    std::vector<TilePosition> m_points;
     std::vector<RegionEdge> m_edges;
     std::vector<UnitPosition> m_neutralUnitPositions;
     
@@ -63,11 +69,11 @@ class RegionEdge {
 public:
     //Returns the regions this edge separates
     const std::pair<const Region *, const Region *> & getRegions(){return m_regions;}
-    const std::vector<sc2::Point2D> getPoints(){return m_points;}
+    const std::vector<TilePosition> getPoints(){return m_points;}
     EdgeType getEdgeType(){return m_edgeType;}
 private:
     std::pair<const Region *, const Region *> m_regions;
-    std::vector<sc2::Point2D> m_points;
+    std::vector<TilePosition> m_points;
     EdgeType m_edgeType;
 };
 

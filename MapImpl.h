@@ -12,11 +12,30 @@
 
 class MapImpl : public Map {
 private:
+    std::pair<size_t, size_t> findNeighboringAreas(std::shared_ptr<TilePosition> tilePosition) {
+        std::pair<size_t, size_t> result(0,0);
+        
+        for(sc2::Point2D delta: {sc2::Point2D(0,-1), sc2::Point2D(0,1), sc2::Point2D(-1,0), sc2::Point2D(1,0)}) {
+            if(Valid(tilePosition->first + delta)) {
+                size_t regionId = GetTile(tilePosition->first + delta)->getRegionId();
+                
+                if(regionId > 0) {
+                    if(!result.first) {
+                        result.first = regionId;
+                    } else if(result.first != regionId) {
+                        if(!result.second || regionId < result.second) {
+                            result.second = regionId;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return result;
+    }
     
 public:
-    ~MapImpl(){
-        std::cout << "MapImpl destructor" << std::endl;
-    }
+    ~MapImpl(){}
     
     void Initialize(){
         
@@ -73,7 +92,15 @@ public:
     void ComputeRegions() {
         std::vector<Region> tmp_regions(1);
         for(auto& buildableTile: m_buildableTiles) {
+            std::pair<size_t, size_t> neighboringAreas = findNeighboringAreas(buildableTile);
             
+            if(!neighboringAreas.first) {
+                
+            } else if(!neighboringAreas.second) {
+                buildableTile->second->setRegionId(neighboringAreas.second);
+            } else {
+                
+            }
         }
     }
 };

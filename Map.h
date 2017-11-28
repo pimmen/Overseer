@@ -3,10 +3,6 @@
 #include "ChokePoint.h"
 #include <memory>
 
-
-
-
-
 class Map {
 public:
     Map(){}
@@ -43,6 +39,14 @@ public:
     //Pushes tile into the k-d tree
     void addTile(sc2::Point2D pos, std::shared_ptr<Tile> tile){
         m_tilePositions.insert(std::make_pair(pos, tile));
+    }
+    
+    bool Valid(sc2::Point2D pos) const {
+        return ((0 <= pos.x) && (pos.x <= m_width) && (0 <= pos.y) && (pos.y <= m_height));
+    }
+    
+    std::shared_ptr<Tile> GetTile(sc2::Point2D pos) {
+        return m_tilePositions.find(pos)->second;
     }
     
     size_t size() { return m_tilePositions.size(); }

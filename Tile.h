@@ -37,7 +37,7 @@ private:
         bool            doodad:true;
     };
     
-    size_t m_regionId;
+    size_t m_regionId = 0;
     float m_distNearestUnpathable;
     TileInfo m_tileInfo;
 };

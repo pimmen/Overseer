@@ -7,7 +7,6 @@
 
 #ifndef Tile_h
 #define Tile_h
-#include "Region.h"
 
 class Tile {
 public:
@@ -37,7 +36,7 @@ private:
         bool            doodad:true;
     };
     
-    size_t m_regionId = 0;
+    size_t m_regionId;
     float m_distNearestUnpathable;
     TileInfo m_tileInfo;
 };

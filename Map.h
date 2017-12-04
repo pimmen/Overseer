@@ -12,10 +12,6 @@ public:
         m_height = m_bot->Observation()->GetGameInfo().height;
     }
     
-    struct GreaterTile {
-        bool operator()(std::shared_ptr<TilePosition> &a, std::shared_ptr<TilePosition> &b) const { return a->second->getDistNearestUnpathable() > b->second->getDistNearestUnpathable(); }
-    };
-    
     //Gets the map instance running right now
     const Map & getInstance();
     

@@ -1,6 +1,6 @@
 #ifndef ChokePoint_h
 #define ChokePoint_h
-#include "Tile.h"
+#include "Region.h"
 #include <utility>
 
 class ChokePoint {

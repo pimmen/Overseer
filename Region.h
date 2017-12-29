@@ -50,7 +50,7 @@ public:
     }
     
     //Gets the number of points within the region, which corresponds to it's area
-    int getArea() {return m_tilePositions.size();}
+    size_t getArea() const {return m_tilePositions.size();}
     
     //Returns the edges of the region
     std::vector<RegionEdge> getEdges(){return m_edges;}
@@ -58,7 +58,7 @@ public:
     //Returns the units and positions occupying the region
     const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
     
-    size_t getId(){return m_id;}
+    const size_t getId(){return m_id;}
     
     std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> getTilePositions() { return m_tilePositions; }
     

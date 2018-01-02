@@ -23,6 +23,8 @@ public:
         
         CreateFrontiers();
         
+        m_graph.CreateChokePoints();
+        
     }
     
     //Iterate over all integer coordinate positions and create a tile
@@ -99,7 +101,7 @@ public:
                     tmp_regions[larger].Merge(tmp_regions[smaller]);
                     tmp_regions[smaller].Clear();
                 } else {
-                    std::cout << "No merge" << std::endl;
+                    //std::cout << "No merge" << std::endl;
                     m_frontierPositions.push_back(buildableTile);
                 }
             }
@@ -114,12 +116,6 @@ public:
             if(tmp_region.getArea() > 0) {
                 addRegion(tmp_region);
             }
-        }
-        
-        std::cout << "Number of regions: " << getRegions().size() << std::endl;
-        
-        for(auto& region: getRegions()) {
-            std::cout << region->getId() << ", " << region->getArea() << std::endl;
         }
     }
     

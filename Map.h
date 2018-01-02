@@ -31,7 +31,7 @@ public:
     }
     
     //Returns region with the id
-    const Region *getRegion(size_t id) {
+    Region *getRegion(size_t id) {
         return m_regions[id].get();
     }
     

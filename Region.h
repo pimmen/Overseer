@@ -58,17 +58,17 @@ public:
     //Returns the units and positions occupying the region
     const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
     
-    const size_t getId(){return m_id;}
+    const size_t getId() const {return m_id;}
     
     std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> getTilePositions() { return m_tilePositions; }
     
     //Used by Overseer's internal functions
-    void AddTilePosition(std::shared_ptr<TilePosition> tilePosition) {
+    void AddTilePosition(std::shared_ptr<TilePosition> tilePosition) const {
         tilePosition->second->setRegionId(m_id);
         m_tilePositions.push(*tilePosition);
     }
     
-    void AddTilePosition(TilePosition tilePosition) {
+    void AddTilePosition(TilePosition tilePosition) const {
         tilePosition.second->setRegionId(m_id);
         m_tilePositions.push(tilePosition);
     }
@@ -86,8 +86,10 @@ public:
         }
     }
     
-    void Clear() {
-        m_tilePositions = std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance>();
+    void Clear() const {
+        while(!m_tilePositions.empty()) {
+            m_tilePositions.pop();
+        }
     }
     
 private:

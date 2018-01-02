@@ -3,6 +3,8 @@
 #include "Region.h"
 #include <utility>
 
+class Graph;
+
 class ChokePoint {
 public:
     typedef std::vector<const ChokePoint *> Path;
@@ -11,13 +13,24 @@ public:
     const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
     
     //Returns the regions this choke point connects
-    const std::pair<const Region *, const Region *> & getRegions(){return m_regions;}
+    const std::pair<const Region *, const Region *> & getRegions() const {return m_regions;}
     
-    ChokePoint(const Region * region1, const Region * region2, sc2::Point2D center){m_regions.first = region1; m_regions.second = region2; m_center = center;}
+    ChokePoint(Graph *graph, const Region * region1, const Region * region2, std::vector<TilePosition> tilePositions){
+        p_graph = graph;
+        m_regions.first = region1;
+        m_regions.second = region2;
+        m_tilePositions = tilePositions;
+        m_center = tilePositions.front();
+    }
+    
+    Graph * GetGraph(){return p_graph;}
 private:
     std::pair<const Region *, const Region *> m_regions;
     std::vector<UnitPosition> m_neutralUnitPositions;
-    sc2::Point2D m_center;
+    std::vector<TilePosition> m_tilePositions;
+    TilePosition m_center;
+    
+    Graph *p_graph;
 };
 
 

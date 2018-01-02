@@ -15,8 +15,12 @@ public:
     void setMap(Map *map){p_map = map;}
     
     void CreateChokePoints() {
-        for(auto const & frontier : p_map->getRawFrontier()) {
+        for(auto const & frontierByRegionPair : p_map->getRawFrontier()) {
+            size_t regionIdA = frontierByRegionPair.first.first;
+            size_t regionIdB = frontierByRegionPair.first.second;
+            std::vector<TilePosition> frontierPositions = frontierByRegionPair.second;
             
+            m_chokePoints.emplace_back(this, p_map->getRegion(regionIdA), p_map->getRegion(regionIdB),frontierPositions);
         }
     }
 };

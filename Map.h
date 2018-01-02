@@ -31,14 +31,14 @@ public:
     }
     
     //Returns region with the id
-    std::shared_ptr<Region> getRegion(size_t id) {
-        return m_regions[id];
+    const Region *getRegion(size_t id) {
+        return m_regions[id].get();
     }
     
     //Returns the region closest to the point
     //Returns null_ptr if getRegions.empty()
-    const std::shared_ptr<Region> getNearestRegion(sc2::Point2D pos) {
-        std::shared_ptr<Region> region = 0;
+    const Region *getNearestRegion(sc2::Point2D pos) {
+        Region *region = 0;
         
         for(neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
             if(iter->second->getRegionId()){

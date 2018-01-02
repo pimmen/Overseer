@@ -21,6 +21,8 @@ public:
         
         CreateRegions(tmp_regions);
         
+        CreateFrontiers();
+        
     }
     
     //Iterate over all integer coordinate positions and create a tile
@@ -103,35 +105,8 @@ public:
             }
         }
         
-        //Create frontier positions between regions
-        for(auto& frontierPosition : getFrontierPositions()) {
-            std::pair<size_t, size_t> neighboringAreas = findNeighboringAreas(frontierPosition);
-            
-            if(!neighboringAreas.second) {
-                tmp_regions[neighboringAreas.first].AddTilePosition(frontierPosition);
-            } else {
-                size_t smaller = neighboringAreas.first;
-                size_t larger = neighboringAreas.second;
-                
-                if(tmp_regions[larger].getArea() < tmp_regions[smaller].getArea()) {
-                    std::swap(smaller, larger);
-                    neighboringAreas = std::make_pair(smaller, larger);
-                }
-                
-                if(m_rawFrontier.count(neighboringAreas)) {
-                    std::cout << "Adding tile to frontier " << smaller << ", " << larger << std::endl;
-                    m_rawFrontier[neighboringAreas].push_back(*frontierPosition);
-                } else {
-                    std::cout << "Creating new frontier " << smaller << ", " << larger << std::endl;
-                    std::vector<TilePosition> regionFrontier = {*frontierPosition};
-                    m_rawFrontier[neighboringAreas] = regionFrontier;
-                }
-            }
-        }
-        
         return tmp_regions;
     }
-    
     
     //Find the regions with a real area and add them to map, resolve the frontiers
     void CreateRegions(std::vector<Region> tmp_regions) {
@@ -147,6 +122,36 @@ public:
             std::cout << region->getId() << ", " << region->getArea() << std::endl;
         }
     }
+    
+    void CreateFrontiers(){
+        //Create frontier positions between regions
+        for(auto& frontierPosition : getFrontierPositions()) {
+            std::pair<size_t, size_t> neighboringAreas = findNeighboringAreas(frontierPosition);
+            
+            if(!neighboringAreas.second) {
+                getRegion(neighboringAreas.first)->AddTilePosition(frontierPosition);
+            } else {
+                size_t smaller = neighboringAreas.first;
+                size_t larger = neighboringAreas.second;
+                
+                if(getRegion(larger)->getArea() < getRegion(smaller)->getArea()) {
+                    std::swap(smaller, larger);
+                    neighboringAreas = std::make_pair(smaller, larger);
+                }
+                
+                if(m_rawFrontier.count(neighboringAreas)) {
+                    //std::cout << "Adding tile to frontier " << smaller << ", " << larger << std::endl;
+                    m_rawFrontier[neighboringAreas].push_back(*frontierPosition);
+                } else {
+                    //std::cout << "Creating new frontier " << smaller << ", " << larger << std::endl;
+                    std::vector<TilePosition> regionFrontier = {*frontierPosition};
+                    m_rawFrontier[neighboringAreas] = regionFrontier;
+                }
+            }
+        }
+    }
+    
+    Graph getGraph(){ return m_graph; }
 };
 
 #endif /* MapImpl_h */

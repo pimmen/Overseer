@@ -1,6 +1,5 @@
 #ifndef MapImpl_h
 #define MapImpl_h
-#include <algorithm>
 #include "Graph.h"
 
 class MapImpl : public Map {
@@ -33,7 +32,7 @@ public:
             for (size_t y(0); y < m_height; ++y) {
                 sc2::Point2D pos(x,y);
                 
-                bool pathable = m_bot->Observation()->IsPlacable(pos);
+                bool pathable = (m_bot->Observation()->IsPlacable(pos) || m_bot->Observation()->IsPathable(pos));
                 
                 std::shared_ptr<Tile> tile = std::make_shared<Tile>();
                 tile->setBuildable(pathable);
@@ -112,9 +111,12 @@ public:
     
     //Find the regions with a real area and add them to map, resolve the frontiers
     void CreateRegions(std::vector<Region> tmp_regions) {
-        for(const auto& tmp_region: tmp_regions) {
+        size_t index = 1;
+        for(auto& tmp_region: tmp_regions) {
             if(tmp_region.getArea() > 0) {
+                tmp_region.setId(index);
                 addRegion(tmp_region);
+                index++;
             }
         }
     }

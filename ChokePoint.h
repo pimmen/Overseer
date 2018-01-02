@@ -23,6 +23,14 @@ public:
         m_center = tilePositions.front();
     }
     
+    const size_t Size() const { return m_tilePositions.size(); }
+    
+    const sc2::Point2D getMiddlePoint() {
+        std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
+                                                          [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
+        return midTilePosition->first;
+    }
+    
     Graph * GetGraph(){return p_graph;}
 private:
     std::pair<const Region *, const Region *> m_regions;

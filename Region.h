@@ -4,6 +4,7 @@
 #include <queue>
 #include <map>
 #include <iostream>
+#include <algorithm>
 #include "spatial/box_multimap.hpp"
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"
@@ -58,8 +59,18 @@ public:
     //Returns the units and positions occupying the region
     const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
     
-    const size_t getId() const {
+    size_t getId() const {
         return m_id;
+    }
+    
+    void setId(size_t regionId) {
+        m_id = regionId;
+        std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> tmp_positions = m_tilePositions;
+        while(!tmp_positions.empty()) {
+            TilePosition tilePosition = tmp_positions.top();
+            tilePosition.second->setRegionId(regionId);
+            tmp_positions.pop();
+        }
     }
     
     std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> getTilePositions() { return m_tilePositions; }
@@ -77,6 +88,10 @@ public:
     
     double getLargestDistanceToUnpathable() {
         return m_tilePositions.top().second->getDistNearestUnpathable();
+    }
+    
+    sc2::Point2D getMidPoint() {
+        return m_tilePositions.top().first;
     }
     
     void Merge(Region region) {

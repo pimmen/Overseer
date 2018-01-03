@@ -65,52 +65,48 @@ public:
     
     void setId(size_t regionId) {
         m_id = regionId;
-        std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> tmp_positions = m_tilePositions;
-        while(!tmp_positions.empty()) {
-            TilePosition tilePosition = tmp_positions.top();
+        for(auto & tilePosition : m_tilePositions) {
             tilePosition.second->setRegionId(regionId);
-            tmp_positions.pop();
         }
     }
     
-    std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> getTilePositions() { return m_tilePositions; }
+    std::vector<TilePosition> getTilePositions() { return m_tilePositions; }
     
     //Used by Overseer's internal functions
     void AddTilePosition(std::shared_ptr<TilePosition> tilePosition) {
         tilePosition->second->setRegionId(m_id);
-        m_tilePositions.push(std::pair<sc2::Point2D, std::shared_ptr<Tile>>(tilePosition->first, tilePosition->second));
+        m_tilePositions.push_back(std::pair<sc2::Point2D, std::shared_ptr<Tile>>(tilePosition->first, tilePosition->second));
     }
     
     void AddTilePosition(TilePosition tilePosition) {
         tilePosition.second->setRegionId(m_id);
-        m_tilePositions.push(tilePosition);
+        m_tilePositions.push_back(tilePosition);
     }
     
     double getLargestDistanceToUnpathable() {
-        return m_tilePositions.top().second->getDistNearestUnpathable();
+        std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
+                                                                               [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
+        return midTilePosition->second->getDistNearestUnpathable();
     }
     
     sc2::Point2D getMidPoint() {
-        return m_tilePositions.top().first;
+        std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
+                                                                               [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
+        return midTilePosition->first;
     }
     
     void Merge(Region region) {
-        std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> regionTiles = region.getTilePositions();
-        
-        while(!regionTiles.empty()) {
-            AddTilePosition(regionTiles.top());
-            regionTiles.pop();
+        for (auto& tilePosition : region.getTilePositions()) {
+            AddTilePosition(tilePosition);
         }
     }
     
     void Clear() {
-        while(!m_tilePositions.empty()) {
-            m_tilePositions.pop();
-        }
+        m_tilePositions.clear();
     }
     
 private:
-    std::priority_queue<TilePosition, std::vector<TilePosition>, GreaterTileInstance> m_tilePositions;
+    std::vector<TilePosition> m_tilePositions;
     std::vector<RegionEdge> m_edges;
     std::vector<UnitPosition> m_neutralUnitPositions;
     
@@ -118,8 +114,7 @@ private:
 };
 
 enum EdgeType {
-    wall,
-    drop,
+    cliff,
     impassible
 };
 

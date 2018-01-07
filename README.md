@@ -16,14 +16,16 @@ You need to pass a pointer to your Agent to the map to have it fully configured.
 Now you're good to go! This is how it would look on Interloper LE
 
 ```c++
-MapImpl map;
+{
+	MapImpl map;
 
-map.setBot(&bot); //Pass a pointer to your sc2::Agent
-map.Initialize(); //Intialize the map
+	map.setBot(&bot); //Pass a pointer to your sc2::Agent
+	map.Initialize(); //Intialize the map
 
-std::cout << "Number of tiles on map: " << map.size() << std::endl;
-std::cout << "Number of regions: " << map.getRegions().size() << std::endl;
-std::cout << "Number of choke points: " << map.getGraph().getChokePoints().size() << std::endl;
+	std::cout << "Number of tiles on map: " << map.size() << std::endl;
+	std::cout << "Number of regions: " << map.getRegions().size() << std::endl;
+	std::cout << "Number of choke points: " << map.getGraph().getChokePoints().size() << std::endl;
+}
 ```
 
 This will output

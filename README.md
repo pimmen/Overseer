@@ -39,3 +39,7 @@ Number of choke points: 23
 ## Project status
 
 Overseer is currently under construction. Feel free to make a pull request!
+
+## License
+
+The license can be found [here](https://github.com/pimmen89/Overseer/blob/readmeUpdate/LICENSE.md)

@@ -42,4 +42,4 @@ Overseer is currently under construction. Feel free to make a pull request!
 
 ## License
 
-The license can be found [here.](https://github.com/pimmen89/Overseer/blob/readmeUpdate/LICENSE.md)
+The license can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)

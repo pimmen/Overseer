@@ -1,11 +1,11 @@
-Overseer
-===============
+# Overseer
+
 
 [![Overseer](http://images.ctrustnetwork.com/static_pages/gaming/starcraft/unit_images_white/starcraft.2.overseer.png)](#features)
 
 Header only library for analyzing Starcraft 2 maps by region decomposition. Based on the [Brood War Easy Map architecture](http://bwem.sourceforge.net/) created by Igor Dimitrijevic. It uses the MIT license.
 
-### Getting started
+## Getting started
 
 Overseer is header only, you just need to include the folder anywhere in your source folder to use it.
 Include the file `MapImpl.h` into your project to get started.
@@ -28,7 +28,7 @@ Now you're good to go! This is how it would look on Interloper LE
 }
 ```
 
-This will output
+Example output:
 
 ```
 Number of tiles on map: 26752
@@ -36,6 +36,10 @@ Number of regions: 18
 Number of choke points: 23
 ```
 
-### Project status
+## Project status
 
 Overseer is currently under construction. Feel free to make a pull request!
+
+## License
+
+The license can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)

@@ -43,10 +43,15 @@ struct GreaterTileInstance {
 
 class Region {
 public:
-    Region(){}
+    Region(){
+        m_largestDistUnpathable = 0;
+    }
     
     Region(size_t regionId, std::shared_ptr<TilePosition> tilePosition){
         m_id = regionId;
+        m_largestDistUnpathable = tilePosition->second->getDistNearestUnpathable();
+        m_midPoint = tilePosition->first;
+        
         AddTilePosition(tilePosition);
     }
     
@@ -70,29 +75,51 @@ public:
         }
     }
     
-    std::vector<TilePosition> getTilePositions() { return m_tilePositions; }
+    std::vector<TilePosition> getTilePositions() const { return m_tilePositions; }
+    
+    std::vector<sc2::Point2D> getPoints() {
+        std::vector<sc2::Point2D> points;
+        
+        for(auto const & tilePosition : m_tilePositions) {
+            points.push_back(tilePosition.first);
+        }
+        
+        return points;
+    }
     
     //Used by Overseer's internal functions
     void AddTilePosition(std::shared_ptr<TilePosition> tilePosition) {
         tilePosition->second->setRegionId(m_id);
+        
+        float tileDistNearestUnpathable = tilePosition->second->getDistNearestUnpathable();
+        
+        if(m_largestDistUnpathable < tileDistNearestUnpathable) {
+            m_largestDistUnpathable = tileDistNearestUnpathable;
+            m_midPoint = tilePosition->first;
+        }
+        
         m_tilePositions.push_back(std::pair<sc2::Point2D, std::shared_ptr<Tile>>(tilePosition->first, tilePosition->second));
     }
     
     void AddTilePosition(TilePosition tilePosition) {
         tilePosition.second->setRegionId(m_id);
+        
+        float tileDistNearestUnpathable = tilePosition.second->getDistNearestUnpathable();
+        
+        if(m_largestDistUnpathable < tileDistNearestUnpathable) {
+            m_largestDistUnpathable = tileDistNearestUnpathable;
+            m_midPoint = tilePosition.first;
+        }
+        
         m_tilePositions.push_back(tilePosition);
     }
     
-    double getLargestDistanceToUnpathable() {
-        std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
-                                                                               [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
-        return midTilePosition->second->getDistNearestUnpathable();
+    double getLargestDistanceToUnpathable() const {
+        return m_largestDistUnpathable;
     }
     
-    sc2::Point2D getMidPoint() {
-        std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
-                                                                               [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
-        return midTilePosition->first;
+    sc2::Point2D getMidPoint() const {
+        return m_midPoint;
     }
     
     void Merge(Region region) {
@@ -109,6 +136,9 @@ private:
     std::vector<TilePosition> m_tilePositions;
     std::vector<RegionEdge> m_edges;
     std::vector<UnitPosition> m_neutralUnitPositions;
+    
+    float m_largestDistUnpathable;
+    sc2::Point2D m_midPoint;
     
     size_t m_id;
 };

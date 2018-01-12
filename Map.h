@@ -20,9 +20,9 @@ public:
     //Gets the map instance running right now
     const Map & getInstance();
     
-    const size_t getHeight() const { return m_height; }
+    size_t getHeight() const { return m_height; }
     
-    const size_t getWidth() const { return m_width; }
+    size_t getWidth() const { return m_width; }
     
     //Returns all regions on map
     std::vector<std::shared_ptr<Region>> getRegions() {
@@ -85,7 +85,7 @@ public:
         m_height = m_bot->Observation()->GetGameInfo().height;
     }
     
-    std::pair<size_t, size_t> findNeighboringAreas(std::shared_ptr<TilePosition> tilePosition) {
+    std::pair<size_t, size_t> findNeighboringRegions(std::shared_ptr<TilePosition> tilePosition) {
         std::pair<size_t, size_t> result(0,0);
         
         for(sc2::Point2D delta: {sc2::Point2D(0,-1), sc2::Point2D(0,1), sc2::Point2D(-1,0), sc2::Point2D(1,0)}) {

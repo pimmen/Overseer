@@ -24,23 +24,27 @@ public:
         
         m_graph.CreateChokePoints();
         
+        m_graph.ComputePaths();
+        
     }
     
     //Iterate over all integer coordinate positions and create a tile
+    //Set default region id as 0
     void CreateTiles() {
         for (size_t x(0); x < m_width; ++x) {
             for (size_t y(0); y < m_height; ++y) {
                 sc2::Point2D pos(x,y);
                 
-                bool pathable = (m_bot->Observation()->IsPlacable(pos) || m_bot->Observation()->IsPathable(pos));
+                bool buildable = (m_bot->Observation()->IsPlacable(pos) || m_bot->Observation()->IsPathable(pos));
                 
                 std::shared_ptr<Tile> tile = std::make_shared<Tile>();
-                tile->setBuildable(pathable);
+                tile->setBuildable(buildable);
                 tile->setRegionId(0);
                 
-                if(pathable) {
+                if(buildable) {
                     m_buildableTiles.push_back(std::shared_ptr<TilePosition>(new TilePosition(std::make_pair(pos, tile))));
                 } else {
+                    //Add ubuildable tiles to k-d tree, for rapid retrieval when it's time to compute altitudes
                     tile->setDistNearestUnpathable(0);
                     addTile(pos, tile);
                 }
@@ -76,17 +80,17 @@ public:
         std::vector<Region> tmp_regions(1);
         
         for(auto& buildableTile: m_buildableTiles) {
-            std::pair<size_t, size_t> neighboringAreas = findNeighboringAreas(buildableTile);
+            std::pair<size_t, size_t> neighboringRegions = findNeighboringRegions(buildableTile);
             
-            if(!neighboringAreas.first) {
+            if(!neighboringRegions.first) {
                 //std::cout << "New region " << tmp_regions.size() << std::endl;
                 tmp_regions.emplace_back((size_t) tmp_regions.size(), buildableTile);
-            } else if(!neighboringAreas.second) {
-                //std::cout << "Add to region " << neighboringAreas.first << std::endl;
-                tmp_regions[neighboringAreas.first].AddTilePosition(buildableTile);
+            } else if(!neighboringRegions.second) {
+                //std::cout << "Add to region " << neighboringRegions.first << std::endl;
+                tmp_regions[neighboringRegions.first].AddTilePosition(buildableTile);
             } else {
-                size_t smaller = neighboringAreas.first;
-                size_t larger = neighboringAreas.second;
+                size_t smaller = neighboringRegions.first;
+                size_t larger = neighboringRegions.second;
                 if(tmp_regions[larger].getArea() < tmp_regions[smaller].getArea()) {
                     std::swap(smaller, larger);
                 }
@@ -124,26 +128,24 @@ public:
     void CreateFrontiers(){
         //Create frontier positions between regions
         for(auto& frontierPosition : getFrontierPositions()) {
-            std::pair<size_t, size_t> neighboringAreas = findNeighboringAreas(frontierPosition);
+            std::pair<size_t, size_t> neighboringRegions = findNeighboringRegions(frontierPosition);
             
-            if(!neighboringAreas.second) {
-                getRegion(neighboringAreas.first)->AddTilePosition(frontierPosition);
+            if(!neighboringRegions.second) {
+                getRegion(neighboringRegions.first)->AddTilePosition(frontierPosition);
             } else {
-                size_t smaller = neighboringAreas.first;
-                size_t larger = neighboringAreas.second;
+                size_t smaller = neighboringRegions.first;
+                size_t larger = neighboringRegions.second;
                 
                 if(getRegion(larger)->getArea() < getRegion(smaller)->getArea()) {
                     std::swap(smaller, larger);
-                    neighboringAreas = std::make_pair(smaller, larger);
+                    neighboringRegions = std::make_pair(smaller, larger);
                 }
                 
-                if(m_rawFrontier.count(neighboringAreas)) {
-                    //std::cout << "Adding tile to frontier " << smaller << ", " << larger << std::endl;
-                    m_rawFrontier[neighboringAreas].push_back(*frontierPosition);
+                if(m_rawFrontier.count(neighboringRegions)) {
+                    m_rawFrontier[neighboringRegions].push_back(*frontierPosition);
                 } else {
-                    //std::cout << "Creating new frontier " << smaller << ", " << larger << std::endl;
                     std::vector<TilePosition> regionFrontier = {*frontierPosition};
-                    m_rawFrontier[neighboringAreas] = regionFrontier;
+                    m_rawFrontier[neighboringRegions] = regionFrontier;
                 }
             }
         }

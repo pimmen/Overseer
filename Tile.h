@@ -1,10 +1,3 @@
-//
-//  Tile.h
-//  martin
-//
-//  Created by Pontus Ekholm on 2017-10-05.
-//
-
 #ifndef Tile_h
 #define Tile_h
 

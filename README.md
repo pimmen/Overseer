@@ -24,7 +24,6 @@ Now you're good to go! This is how it would look on Interloper LE
 
 	std::cout << "Number of tiles on map: " << map.size() << std::endl;
 	std::cout << "Number of regions: " << map.getRegions().size() << std::endl;
-	std::cout << "Number of choke points: " << map.getGraph().getChokePoints().size() << std::endl;
 }
 ```
 
@@ -33,9 +32,9 @@ Example output:
 ```
 Number of tiles on map: 26752
 Number of regions: 18
-Number of choke points: 23
 ```
 
+If you want the number of `ChokePoint` you have to check for each region pair since a pair of regions could have multiple `ChokePoint`
 ## Project status
 
 Overseer is currently under construction. Feel free to make a pull request!

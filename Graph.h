@@ -27,20 +27,6 @@ public:
         return m_ChokePointsMatrix[region_id_b][region_id_a];
     }
     
-    //Methods for testing and used by Overseer internals
-    std::vector<ChokePoint> getChokePoints() const {
-        std::vector<ChokePoint> chokePoints;
-
-        for (auto const & cp_vector : m_ChokePointsMatrix) {
-
-            for (auto const & cp_sub_vector : cp_vector) {
-                chokePoints.insert(chokePoints.end(), cp_sub_vector.begin(), cp_sub_vector.end());
-            }
-        }
-
-        return chokePoints;
-    }
-
     void setMap(Map *map){ p_map = map; }
 
     void CreateChokePoints() {
@@ -86,7 +72,7 @@ public:
 
             for(auto cluster : clusters) {
                 std::vector<TilePosition> clusterPositions;
-
+                
                 while (!cluster.empty()) {
                     TilePosition clusterPosition = cluster.front();
                     clusterPositions.push_back(clusterPosition);

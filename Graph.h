@@ -19,8 +19,7 @@ private:
 public:
     Graph(){}
     Graph(Map *map):p_map(map){}
-    //Returns all ChokePoints between region A and region B
-    //Ids can be sent in at any order
+
     /**
     * \brief descripbe function... 
     *

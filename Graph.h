@@ -17,15 +17,19 @@ private:
     }
 
 public:
-    Graph(){}
-    Graph(Map *map):p_map(map){}
+    /**
+    * \brief object constructor.
+    *
+    * \param map The map to make the graph on.
+    */
+    Graph(Map* map):p_map(map){}
 
     /**
-    * \brief descripbe function... 
+    * \brief Gets the chokepoints been descovered between two adjacent regions.
     *
-    * \param region_id is a....
-    * \param region_id is b....
-    * \return vector of chockpoint on the sc2 map... 
+    * \param region_id_a a region which is adjacent to region_id_b
+    * \param region_id_b a region which is adjacent to region_id_a
+    * \return A vector containing all the found chokepoint between the two regions.
     */
     std::vector<ChokePoint> getChokePoints(size_t region_id_a, size_t region_id_b) const {
         assert(ValidId(region_id_a) && ValidId(region_id_b));
@@ -36,9 +40,10 @@ public:
 
         return m_ChokePointsMatrix[region_id_b][region_id_a];
     }
-    
-    void setMap(Map *map){ p_map = map; }
 
+    /**
+    * \brief find and create the chokepoint on the map.
+    */
     void CreateChokePoints() {
         num_regions = p_map->getRegions().size();
 
@@ -95,6 +100,11 @@ public:
         ComputeAdjacencyMatrix(chokePoints);
     }
 
+    /**
+    * \brief Build triagular matrix to store region adjacency.
+    *
+    * \param chokePoints A vector that contains the found chokepoints.
+    */
     void ComputeAdjacencyMatrix(std::vector<ChokePoint> chokePoints) {
         m_ChokePointsMatrix.resize(num_regions + 1);
 

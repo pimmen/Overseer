@@ -10,21 +10,33 @@ class Graph;
 
 class Map {
 public:
-    Map(){}
+    /**
+    * 
+    */
     Map(sc2::Agent* bot){
         m_bot = bot;
         m_width  = m_bot->Observation()->GetGameInfo().width;
         m_height = m_bot->Observation()->GetGameInfo().height;
     }
     
-    //Gets the map instance running right now
+    /**
+    *
+    */
     const Map & getInstance();
     
+    /**
+    *
+    */
     size_t getHeight() const { return m_height; }
     
+    /**
+    *
+    */
     size_t getWidth() const { return m_width; }
     
-    //Returns all regions on map
+    /**
+    *
+    */
     std::vector<std::shared_ptr<Region>> getRegions() {
         std::vector<std::shared_ptr<Region>> regions;
         for(RegionMap::iterator it = m_regions.begin(); it != m_regions.end(); it++) {
@@ -34,13 +46,16 @@ public:
         return regions;
     }
     
-    //Returns region with the id
+    /**
+    *
+    */
     Region *getRegion(size_t id) {
         return m_regions[id].get();
     }
     
-    //Returns the region closest to the point
-    //Returns null_ptr if getRegions.empty()
+    /**
+    *
+    */
     const Region *getNearestRegion(sc2::Point2D pos) {
         Region *region = 0;
         
@@ -53,38 +68,66 @@ public:
         return region;
     }
     
-    //Returns the shortest path in choke-points from start to end
+    /**
+    *
+    */
     const CPPath & getShortestPath(sc2::Point2D start, sc2::Point2D end);
     
-    //Pushes tile into the k-d tree
+    /**
+    *
+    */
     void addTile(sc2::Point2D pos, std::shared_ptr<Tile> tile){
         m_tilePositions.insert(std::make_pair(pos, tile));
     }
     
+    /**
+    *
+    */
     bool Valid(sc2::Point2D pos) const {
         return ((0 <= pos.x) && (pos.x <= m_width) && (0 <= pos.y) && (pos.y <= m_height));
     }
     
+    /**
+    *
+    */
     TilePosition getClosestTilePosition(sc2::Point2D pos) {
         neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos);
         iter++;
         return *iter;
     }
     
+    /**
+    *
+    */
     void addRegion(Region region) { m_regions[region.getId()] = std::make_shared<Region>(region); }
     
+    /**
+    *
+    */
     std::shared_ptr<Tile> GetTile(sc2::Point2D pos) { return m_tilePositions.find(pos)->second; }
     
+    /**
+    *
+    */
     size_t size() { return m_tilePositions.size(); }
     
+    /**
+    *
+    */
     TilePositionContainer getTilePositions() { return m_tilePositions; }
     
+    /**
+    *
+    */
     void setBot(sc2::Agent* bot){
         m_bot = bot;
         m_width  = m_bot->Observation()->GetGameInfo().width;
         m_height = m_bot->Observation()->GetGameInfo().height;
     }
     
+    /**
+    *
+    */
     std::pair<size_t, size_t> findNeighboringRegions(std::shared_ptr<TilePosition> tilePosition) {
         std::pair<size_t, size_t> result(0,0);
         
@@ -110,8 +153,14 @@ public:
         return result;
     }
     
+    /**
+    *
+    */
     std::vector<std::shared_ptr<TilePosition>> getFrontierPositions(){ return m_frontierPositions; }
     
+    /**
+    *
+    */
     RawFrontier getRawFrontier() { return m_rawFrontier; }
     
 protected:

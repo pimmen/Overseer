@@ -38,7 +38,7 @@ struct GreaterTile {
 };
 
 struct GreaterTileInstance {
-    bool operator()(TilePosition &a, TilePosition &b) const { return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); }
+    bool operator()(TilePosition &a, TilePosition &b) const { return a.second->getDistNearestUnpathable() > b.second->getDistNearestUnpathable(); }
 };
 
 class Region {

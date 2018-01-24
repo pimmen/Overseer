@@ -24,8 +24,6 @@ public:
         
         m_graph.CreateChokePoints();
         
-        m_graph.ComputePaths();
-        
     }
     
     //Iterate over all integer coordinate positions and create a tile

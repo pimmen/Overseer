@@ -1,6 +1,8 @@
 #ifndef Tile_h
 #define Tile_h
 
+#include "Definitions.h"
+
 class Tile {
 public:
     bool Buildable(){return m_tileInfo.buildable;}

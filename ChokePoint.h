@@ -31,7 +31,7 @@ public:
     
     size_t Size() const { return m_tilePositions.size(); }
     
-    sc2::Point2D getMidPoint() {
+    sc2::Point2D getMidPoint() const {
         return m_center.first;
     }
     

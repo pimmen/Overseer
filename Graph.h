@@ -2,6 +2,10 @@
 #define Graph_h
 #include "Map.h"
 
+/**
+* \class Graph Graph.h "Graph.h"
+* \brief Purpose is to map all the regaion ...
+*/
 class Graph {
 private:
     size_t num_regions;
@@ -17,6 +21,13 @@ public:
     Graph(Map *map):p_map(map){}
     //Returns all ChokePoints between region A and region B
     //Ids can be sent in at any order
+    /**
+    * \brief descripbe function... 
+    *
+    * \param region_id is a....
+    * \param region_id is b....
+    * \return vector of chockpoint on the sc2 map... 
+    */
     std::vector<ChokePoint> getChokePoints(size_t region_id_a, size_t region_id_b) const {
         assert(ValidId(region_id_a) && ValidId(region_id_b));
 

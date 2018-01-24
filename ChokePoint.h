@@ -51,7 +51,7 @@ private:
     std::vector<UnitPosition> m_neutralUnitPositions;
     std::vector<TilePosition> m_tilePositions;
     TilePosition m_center;
-    
+
     Graph *p_graph;
 };
 

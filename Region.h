@@ -17,12 +17,12 @@ namespace Overseer{
 
     using namespace spatial;
 
+    //Used to access arbitrary points in the region
     /**
     * \struct point2d_accessor Region.h "Region.h"
     *
     * \brief -.-.... encapsulation time.
     */
-    //Used to access arbitrary points in the region
     struct point2d_accessor {
         int operator() (dimension_type dim, const sc2::Point2D p) const {
             switch(dim) {
@@ -48,7 +48,7 @@ namespace Overseer{
     };
 
     /**
-    * \struct GreaterTile Region.h "Region.h"
+    * \struct GreaterTileInstance Region.h "Region.h"
     *
     * \brief sort on distance to nerearest unpathable.
     */
@@ -227,7 +227,7 @@ namespace Overseer{
     };
 
     /**
-    * \enum EdgeTyppe Region.h "Region.h"
+    * \enum EdgeType Region.h "Region.h"
     */
     enum EdgeType {
         cliff,

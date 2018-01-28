@@ -3,13 +3,23 @@
 #include "Graph.h"
 
 namespace Overseer{
+
+    /**
+    * \class MapImpl MapImpl.h "MapImpl.h"
+    * \ brief hejsan svejsan
+    */
     class MapImpl : public Map {
         private:
-            ~MapImpl(){}
             Graph m_graph;
             static const size_t min_region_area = 80;
 
         public:
+            
+            ~MapImpl(){}
+
+            MapImpl(sc2::Agent* bot):Map(bot){}
+
+            MapImpl():Map(){}
             
             /**
             * \brief Initialize overseer, should be done after the map been loaded.
@@ -123,9 +133,6 @@ namespace Overseer{
                 return tmp_regions;
             }
             
-            /**
-            * makE PRIVATE
-            */
             //Find the regions with a real area and add them to map, resolve the frontiers
             void CreateRegions(std::vector<Region> tmp_regions) {
                 size_t index = 1;
@@ -138,9 +145,7 @@ namespace Overseer{
                 }
             }
             
-            /**
-            * make private
-            */
+            
             void CreateFrontiers(){
                 //Create frontier positions between regions
                 for(auto& frontierPosition : getFrontierPositions()) {

@@ -17,6 +17,8 @@ namespace Overseer{
     */
     class Map {
         public:
+
+            Map(){}
             /**
             * \brief constructor.
             *
@@ -62,7 +64,7 @@ namespace Overseer{
             * \param id The id of the specific region.
             * \return 
             */
-            const Region *getRegion(size_t id) const{
+            Region *getRegion(size_t id){
                 return (m_regions.find(id) != m_regions.end()) ? m_regions[id].get() : nullptr;
             }
             
@@ -72,7 +74,7 @@ namespace Overseer{
             * \param pos Is the position point to find region from.
             * \return pointer to the found region. 
             */
-            const Region *getNearestRegion(sc2::Point2D pos) const{
+            const Region *getNearestRegion(sc2::Point2D pos){
                 Region *region = nullptr;
                 
                 for(neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
@@ -186,14 +188,10 @@ namespace Overseer{
                 return result;
             }
             
-            /**
-            * MAKE PRIVATE!
-            */
+            // MAKE PRIVATE!
             std::vector<std::shared_ptr<TilePosition>> getFrontierPositions(){ return m_frontierPositions; }
             
-            /**
-            * MAKE PRIVATE!
-            */
+            // * MAKE PRIVATE!
             RawFrontier getRawFrontier() { return m_rawFrontier; }
             
         protected:

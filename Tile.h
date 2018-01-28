@@ -20,7 +20,7 @@ namespace Overseer{
             /**
             * \brief Get the z-axis value for the tile.
             *
-            * \reutrn z-axis value.
+            * \return z-axis value.
             */
             int GroundHeight(){return m_tileInfo.groundHeight;}
             

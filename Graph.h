@@ -13,6 +13,8 @@ namespace Overseer{
         Map *p_map;
         std::vector<std::vector<std::vector<ChokePoint>>> m_ChokePointsMatrix;
 
+        static const size_t min_cluster_distance = 17;
+
         bool ValidId(size_t id_arg) const {
             return (id_arg >= 1) && (id_arg <= (num_regions + 1));
         }
@@ -65,7 +67,7 @@ namespace Overseer{
                         float dist_front = sc2::Distance2D(frontierPosition.first, cluster.front().first);
                         float dist_back = sc2::Distance2D(frontierPosition.first, cluster.back().first);
 
-                        if(std::min(dist_front, dist_back) <= constants::min_cluster_distance) {
+                        if(std::min(dist_front, dist_back) <= min_cluster_distance) {
 
                             if(dist_front < dist_back) {
                                 cluster.push_front(frontierPosition);

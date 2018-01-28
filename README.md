@@ -17,7 +17,7 @@ Now you're good to go! This is how it would look on Interloper LE
 
 ```c++
 {
-	MapImpl map;
+	Overseer::MapImpl map;
 
 	map.setBot(&bot); //Pass a pointer to your sc2::Agent
 	map.Initialize(); //Intialize the map

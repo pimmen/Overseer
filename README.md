@@ -39,6 +39,10 @@ If you want the number of `ChokePoint` you have to check for each region pair si
 
 Overseer is currently under construction. Feel free to make a pull request!
 
+## Documentation
+
+The documentation is for local use only and can be found [here.](https://github.com/pimmen89/Overseer/tree/master/doc) To open it on your local machine go into the doc/html/ and open index.html in your webbrowser.
+
 ## License
 
 The license can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)

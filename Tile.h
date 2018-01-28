@@ -1,6 +1,5 @@
 #ifndef Tile_h
-#define Tile_h
-#include "Definitions.h"
+#define Tile_hz
 
 namespace Overseer{
     
@@ -64,7 +63,9 @@ namespace Overseer{
             *
             * \return regionid
             */
-            size_t getRegionId(){return m_regionId;}
+            size_t getRegionId(){
+                return m_regionId;
+            }
             
         private:
             struct TileInfo {

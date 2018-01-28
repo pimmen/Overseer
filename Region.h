@@ -1,42 +1,25 @@
 #ifndef Region_h
 #define Region_h
+
 #include <vector>
 #include <queue>
 #include <map>
 #include <iostream>
 #include <algorithm>
+
 #include "spatial/box_multimap.hpp"
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"
 #include "sc2api/sc2_api.h"
 #include "Tile.h"
+#include "Region.h"
 
 namespace Overseer{
 
     class RegionEdge;
 
-    using namespace spatial;
-
-    //Used to access arbitrary points in the region
-    /**
-    * \struct point2d_accessor Region.h "Region.h"
-    *
-    * \brief -.-.... encapsulation time.
-    */
-    struct point2d_accessor {
-        int operator() (dimension_type dim, const sc2::Point2D p) const {
-            switch(dim) {
-                case 0: return p.x;
-                case 1: return p.y;
-                default: throw std::out_of_range("dim");
-            }
-        }
-    };
-
-    typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
     typedef std::pair<sc2::Point2D, std::shared_ptr<Tile>> TilePosition;
-    typedef box_multimap<2, sc2::Point2D, std::shared_ptr<Tile>, accessor_less<point2d_accessor, sc2::Point2D>> TilePositionContainer;
-    typedef box_multimap<2, sc2::Point2D, sc2::Unit*, accessor_less<point2d_accessor, sc2::Point2D>> UnitPositionContainer;
+    typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
 
     /**
     * \struct GreaterTile Region.h "Region.h"
@@ -49,11 +32,21 @@ namespace Overseer{
 
     /**
     * \struct GreaterTileInstance Region.h "Region.h"
-    *
     * \brief sort on distance to nerearest unpathable.
     */
     struct GreaterTileInstance {
         bool operator()(TilePosition &a, TilePosition &b) const { return a.second->getDistNearestUnpathable() > b.second->getDistNearestUnpathable(); }
+    };
+
+
+    /**
+    * \enum EdgeType Region.h "Region.h"
+    *
+    * \brief Work in progress.
+    */
+    enum EdgeType {
+        cliff,
+        impassible
     };
 
     /**
@@ -63,6 +56,7 @@ namespace Overseer{
     */
     class Region {
         public:
+
             /**
             * \brief default constructor.
             */
@@ -89,30 +83,28 @@ namespace Overseer{
             *
             * \return The number of tile positiions within the region.
             */
-            size_t getArea() const {return m_tilePositions.size();}
+            size_t getArea() const { return m_tilePositions.size(); }
             
             /**
             * \brief Returns the edges of the region
             *
             * \return vector with edges.
             */
-            std::vector<RegionEdge> getEdges(){return m_edges;}
+            std::vector<RegionEdge> getEdges(){ return m_edges; }
             
             /**
             * \brief Returns the units and positions occupying the region
             *
             * \return const vector with unit positions.
             */
-            const std::vector<UnitPosition> getNeutralUnitPositions(){return m_neutralUnitPositions;}
+            const std::vector<UnitPosition> getNeutralUnitPositions(){ return m_neutralUnitPositions; }
             
             /**
             * \brief return region id.
             *
             * \return This region id
             */
-            size_t getId() const {
-                return m_id;
-            }
+            size_t getId() const { return m_id; }
             
             /**
             * \brief set the region id
@@ -133,6 +125,11 @@ namespace Overseer{
             */
             std::vector<TilePosition> getTilePositions() const { return m_tilePositions; }
             
+            /**
+            * \brief Gets all mid points from all tiles within this region.
+            *
+            * \return vector the sc2::Point2D
+            */
             std::vector<sc2::Point2D> getPoints() {
                 std::vector<sc2::Point2D> points;
                 
@@ -166,7 +163,7 @@ namespace Overseer{
             *
             * \param the tile position to add.
             */
-            void AddTilePosition(TilePosition tilePosition) {
+            void AddTilePosition(TilePosition& tilePosition) {
                 tilePosition.second->setRegionId(m_id);
                 
                 float tileDistNearestUnpathable = tilePosition.second->getDistNearestUnpathable();
@@ -222,17 +219,9 @@ namespace Overseer{
             
             float m_largestDistUnpathable;
             sc2::Point2D m_midPoint;
-            
             size_t m_id;
     };
 
-    /**
-    * \enum EdgeType Region.h "Region.h"
-    */
-    enum EdgeType {
-        cliff,
-        impassible
-    };
 
     /**
     * \class RegionEdge Region.h "Region.h"

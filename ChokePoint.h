@@ -1,6 +1,9 @@
 #ifndef ChokePoint_h
 #define ChokePoint_h
+
 #include "Region.h"
+#include "Graph.h"
+
 #include <utility>
 
 namespace Overseer{
@@ -12,19 +15,6 @@ namespace Overseer{
     */
     class ChokePoint {
         public:
-            /**
-            * \brief Gets the position of Neutral units (according to Blizzard's sc2api)
-            *
-            * \return A vector containing the found neutralunitpositions
-            */
-            std::vector<UnitPosition> getNeutralUnitPositions() const {return m_neutralUnitPositions;}
-            
-            /**
-            * \brief Gets the regions where a chokepoint exists between them.
-            *
-            * \return pair containing adjecent regions with chokepoint between them
-            */
-            std::pair<const Region *, const Region *> & getRegions() {return m_regions;}
 
             /**
             * \brief class Constructor
@@ -46,6 +36,20 @@ namespace Overseer{
 
                 m_center = *midTilePosition;
             }
+
+            /**
+            * \brief Gets the position of Neutral units (according to Blizzard's sc2api)
+            *
+            * \return A vector containing the found neutralunitpositions
+            */
+            std::vector<UnitPosition> getNeutralUnitPositions() const {return m_neutralUnitPositions;}
+            
+            /**
+            * \brief Gets the regions where a chokepoint exists between them.
+            *
+            * \return pair containing adjecent regions with chokepoint between them
+            */
+            std::pair<const Region *, const Region *> & getRegions() {return m_regions;}
             
             /**
             * \brief Get the size of the found chokepoint
@@ -79,14 +83,16 @@ namespace Overseer{
                 return points;
             }
 
+            
+
+        private:
             /**
             * \brief Get the graph of the chokepoint
             *
             * \return chokepoint graph
             */
-            Graph * GetGraph(){return p_graph;}
+            Graph * GetGraph(){ return p_graph; }
 
-        private:
             std::pair<const Region *, const Region *> m_regions;
             std::vector<UnitPosition> m_neutralUnitPositions;
             std::vector<TilePosition> m_tilePositions;

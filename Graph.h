@@ -9,16 +9,6 @@ namespace Overseer{
     * \brief Is a mathiimatical "graphmap" of for analising.
     */
     class Graph {
-        private:
-            size_t num_regions;
-            Map *p_map;
-            std::vector<std::vector<std::vector<ChokePoint>>> m_ChokePointsMatrix;
-
-            static const size_t min_cluster_distance = 17;
-
-            bool ValidId(size_t id_arg) const {
-                return (id_arg >= 1) && (id_arg <= (num_regions + 1));
-            }
 
         public:
 
@@ -139,6 +129,17 @@ namespace Overseer{
             * \param map is a pointer to the map.
             */
             void setMap(Map *map){ p_map = map; }
+
+        private:
+            size_t num_regions;
+            Map *p_map;
+            std::vector<std::vector<std::vector<ChokePoint>>> m_ChokePointsMatrix;
+
+            static const size_t min_cluster_distance = 17;
+
+            bool ValidId(size_t id_arg) const {
+                return (id_arg >= 1) && (id_arg <= (num_regions + 1));
+            }
     };
 }
 

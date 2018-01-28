@@ -1,11 +1,34 @@
 #ifndef Map_h
 #define Map_h
+
 #include "ChokePoint.h"
+#include "Graph.h"
+#include "spatial/box_multimap.hpp"
+#include "spatial/neighbor_iterator.hpp"
+#include "spatial/ordered_iterator.hpp"
+
 #include <memory>
 
 
 namespace Overseer{
 
+    /**
+    * \struct point2d_accessor Region.h "Region.h"
+    *
+    * \brief Fix indexing in spatial.
+    */
+    struct point2d_accessor {
+        int operator() (spatial::dimension_type dim, const sc2::Point2D p) const {
+            switch(dim) {
+                case 0: return p.x;
+                case 1: return p.y;
+                default: throw std::out_of_range("dim");
+            }
+        }
+    };
+
+    typedef spatial::box_multimap<2, sc2::Point2D, std::shared_ptr<Tile>, spatial::accessor_less<point2d_accessor, sc2::Point2D>> TilePositionContainer;
+    typedef spatial::box_multimap<2, sc2::Point2D, sc2::Unit*, spatial::accessor_less<point2d_accessor, sc2::Point2D>> UnitPositionContainer;
     typedef std::map<size_t,std::shared_ptr<Region>> RegionMap;
     typedef std::map<std::pair<size_t,size_t>, std::vector<TilePosition>> RawFrontier;
 
@@ -77,7 +100,7 @@ namespace Overseer{
             const Region *getNearestRegion(sc2::Point2D pos){
                 Region *region = nullptr;
                 
-                for(neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
+                for(spatial::neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
                     if(iter->second->getRegionId()){
                         return getRegion(iter->second->getRegionId());
                     }
@@ -112,7 +135,7 @@ namespace Overseer{
             * \return the found tile position.
             */
             TilePosition getClosestTilePosition(sc2::Point2D pos) {
-                neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos);
+                spatial::neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos);
                 iter++;
                 return *iter;
             }
@@ -158,11 +181,21 @@ namespace Overseer{
             }
             
             /**
-            * \brief Find region/regions around tile position.
+            * \brief Get tiles that is between two regions.
             *
-            * \param tilePostition The tile position find region/regions around.
-            * \return The found region/regions.
+            * \return vector with tile position pointers.
             */
+            std::vector<std::shared_ptr<TilePosition>> getFrontierPositions(){ return m_frontierPositions; }
+            
+            /**
+            * \brief region pair and frontier map.
+            *
+            * \return vector of rawfrontier.
+            */
+            RawFrontier getRawFrontier() { return m_rawFrontier; }
+            
+        protected:
+            
             std::pair<size_t, size_t> findNeighboringRegions(std::shared_ptr<TilePosition> tilePosition) {
                 std::pair<size_t, size_t> result(0,0);
                 
@@ -187,14 +220,7 @@ namespace Overseer{
                 
                 return result;
             }
-            
-            // MAKE PRIVATE!
-            std::vector<std::shared_ptr<TilePosition>> getFrontierPositions(){ return m_frontierPositions; }
-            
-            // * MAKE PRIVATE!
-            RawFrontier getRawFrontier() { return m_rawFrontier; }
-            
-        protected:
+
             sc2::Agent* m_bot;
             static std::unique_ptr<Map> m_gInstance;
             

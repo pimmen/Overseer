@@ -1,6 +1,11 @@
 #ifndef MapImpl_h
 #define MapImpl_h
+
 #include "Graph.h"
+#include "Map.h"
+#include "spatial/box_multimap.hpp"
+#include "spatial/neighbor_iterator.hpp"
+#include "spatial/ordered_iterator.hpp"
 
 namespace Overseer{
 
@@ -9,10 +14,6 @@ namespace Overseer{
     * \ brief hejsan svejsan
     */
     class MapImpl : public Map {
-        private:
-            Graph m_graph;
-            static const size_t min_region_area = 80;
-
         public:
             
             ~MapImpl(){}
@@ -42,6 +43,12 @@ namespace Overseer{
                 
             }
             
+            /**
+            * \brief get the graph representation of the map.
+            */
+            Graph getGraph(){ return m_graph; }
+
+        private:
             /**
             * \brief Create the tiles from the map.
             */
@@ -75,7 +82,7 @@ namespace Overseer{
                 for(auto& buildableTile: m_buildableTiles) {
                     sc2::Point2D pos = buildableTile->first;
                     
-                    for(neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
+                    for(spatial::neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
                         if(!(iter->second->Buildable())){
                             buildableTile->second->setDistNearestUnpathable(distance(iter));
                             break;
@@ -91,9 +98,7 @@ namespace Overseer{
                 }
             }
             
-            /**
-            * \brief Make private.
-            */
+            
             //Iterate over all tiles, starting with those furthest away from unpathables (probable candidates for region centers), and add to neighboring region
             //Create new region if no neighboring region is found, if two are found merge the smaller into the larger or create frontier
             std::vector<Region> ComputeTempRegions() {
@@ -171,11 +176,9 @@ namespace Overseer{
                     }
                 }
             }
-            
-            /**
-            * \brief get the graph representation of the map.
-            */
-            Graph getGraph(){ return m_graph; }
+
+            Graph m_graph;
+            static const size_t min_region_area = 80;
     };
 }
 #endif /* MapImpl_h */

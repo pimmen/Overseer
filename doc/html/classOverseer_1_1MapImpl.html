@@ -122,24 +122,6 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1MapImpl.html#a5ec5b37d1ae07732a99845bfbbfce016">Initialize</a> ()</td></tr>
 <tr class="memdesc:a5ec5b37d1ae07732a99845bfbbfce016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize overseer, should be done after the map been loaded. <br /></td></tr>
 <tr class="separator:a5ec5b37d1ae07732a99845bfbbfce016"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab8edf3805bac97477dbf8bfb9cd71f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab8edf3805bac97477dbf8bfb9cd71f8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1MapImpl.html#aab8edf3805bac97477dbf8bfb9cd71f8">CreateTiles</a> ()</td></tr>
-<tr class="memdesc:aab8edf3805bac97477dbf8bfb9cd71f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the tiles from the map. <br /></td></tr>
-<tr class="separator:aab8edf3805bac97477dbf8bfb9cd71f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d27ace0ac8a0507437f398272f2c155"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d27ace0ac8a0507437f398272f2c155"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1MapImpl.html#a9d27ace0ac8a0507437f398272f2c155">ComputeAltitudes</a> ()</td></tr>
-<tr class="memdesc:a9d27ace0ac8a0507437f398272f2c155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterate over the tiles and compute the distance to nearest unpathable tile. <br /></td></tr>
-<tr class="separator:a9d27ace0ac8a0507437f398272f2c155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e7b3b6d04816c9ce14220bccb37f3e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e7b3b6d04816c9ce14220bccb37f3e2"></a>
-std::vector&lt; <a class="el" href="classOverseer_1_1Region.html">Region</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1MapImpl.html#a7e7b3b6d04816c9ce14220bccb37f3e2">ComputeTempRegions</a> ()</td></tr>
-<tr class="memdesc:a7e7b3b6d04816c9ce14220bccb37f3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make private. <br /></td></tr>
-<tr class="separator:a7e7b3b6d04816c9ce14220bccb37f3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a869ff3f368caf2d4974bcec7f106421e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a869ff3f368caf2d4974bcec7f106421e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateRegions</b> (std::vector&lt; <a class="el" href="classOverseer_1_1Region.html">Region</a> &gt; tmp_regions)</td></tr>
-<tr class="separator:a869ff3f368caf2d4974bcec7f106421e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb13a06511f15774550bdf399d3fdd47"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acb13a06511f15774550bdf399d3fdd47"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateFrontiers</b> ()</td></tr>
-<tr class="separator:acb13a06511f15774550bdf399d3fdd47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abedbb01faa88ff9bd3f8cd2dbec0dead"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abedbb01faa88ff9bd3f8cd2dbec0dead"></a>
 <a class="el" href="classOverseer_1_1Graph.html">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1MapImpl.html#abedbb01faa88ff9bd3f8cd2dbec0dead">getGraph</a> ()</td></tr>
 <tr class="memdesc:abedbb01faa88ff9bd3f8cd2dbec0dead"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the graph representation of the map. <br /></td></tr>
@@ -186,18 +168,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateFrontiers</b> (
 <tr class="memitem:a5fe859c4edbfc92971ad2ad38d69ff90 inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#a5fe859c4edbfc92971ad2ad38d69ff90">setBot</a> (sc2::Agent *bot)</td></tr>
 <tr class="memdesc:a5fe859c4edbfc92971ad2ad38d69ff90 inherit pub_methods_classOverseer_1_1Map"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the bot into overseer  <a href="#a5fe859c4edbfc92971ad2ad38d69ff90">More...</a><br /></td></tr>
 <tr class="separator:a5fe859c4edbfc92971ad2ad38d69ff90 inherit pub_methods_classOverseer_1_1Map"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0b8210288ed4dfc7d68e5005614b4e3 inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top">std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#af0b8210288ed4dfc7d68e5005614b4e3">findNeighboringRegions</a> (std::shared_ptr&lt; TilePosition &gt; tilePosition)</td></tr>
-<tr class="memdesc:af0b8210288ed4dfc7d68e5005614b4e3 inherit pub_methods_classOverseer_1_1Map"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find region/regions around tile position.  <a href="#af0b8210288ed4dfc7d68e5005614b4e3">More...</a><br /></td></tr>
-<tr class="separator:af0b8210288ed4dfc7d68e5005614b4e3 inherit pub_methods_classOverseer_1_1Map"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7872066386c1a6d3ee262eb1054130d inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7872066386c1a6d3ee262eb1054130d"></a>
-std::vector&lt; std::shared_ptr&lt; TilePosition &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrontierPositions</b> ()</td></tr>
+<tr class="memitem:aa7872066386c1a6d3ee262eb1054130d inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; TilePosition &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#aa7872066386c1a6d3ee262eb1054130d">getFrontierPositions</a> ()</td></tr>
+<tr class="memdesc:aa7872066386c1a6d3ee262eb1054130d inherit pub_methods_classOverseer_1_1Map"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get tiles that is between two regions.  <a href="#aa7872066386c1a6d3ee262eb1054130d">More...</a><br /></td></tr>
 <tr class="separator:aa7872066386c1a6d3ee262eb1054130d inherit pub_methods_classOverseer_1_1Map"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7123e4389358218ad74ebce58680b6d2 inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7123e4389358218ad74ebce58680b6d2"></a>
-RawFrontier&#160;</td><td class="memItemRight" valign="bottom"><b>getRawFrontier</b> ()</td></tr>
+<tr class="memitem:a7123e4389358218ad74ebce58680b6d2 inherit pub_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top">RawFrontier&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#a7123e4389358218ad74ebce58680b6d2">getRawFrontier</a> ()</td></tr>
+<tr class="memdesc:a7123e4389358218ad74ebce58680b6d2 inherit pub_methods_classOverseer_1_1Map"><td class="mdescLeft">&#160;</td><td class="mdescRight">region pair and frontier map.  <a href="#a7123e4389358218ad74ebce58680b6d2">More...</a><br /></td></tr>
 <tr class="separator:a7123e4389358218ad74ebce58680b6d2 inherit pub_methods_classOverseer_1_1Map"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classOverseer_1_1Map"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classOverseer_1_1Map')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classOverseer_1_1Map.html">Overseer::Map</a></td></tr>
+<tr class="memitem:af0b8210288ed4dfc7d68e5005614b4e3 inherit pro_methods_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0b8210288ed4dfc7d68e5005614b4e3"></a>
+std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>findNeighboringRegions</b> (std::shared_ptr&lt; TilePosition &gt; tilePosition)</td></tr>
+<tr class="separator:af0b8210288ed4dfc7d68e5005614b4e3 inherit pro_methods_classOverseer_1_1Map"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classOverseer_1_1Map"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classOverseer_1_1Map')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classOverseer_1_1Map.html">Overseer::Map</a></td></tr>
 <tr class="memitem:a334ebcf2176817b4754911930dc5164e inherit pro_attribs_classOverseer_1_1Map"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334ebcf2176817b4754911930dc5164e"></a>
 sc2::Agent *&#160;</td><td class="memItemRight" valign="bottom"><b>m_bot</b></td></tr>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['map',['Map',['../classOverseer_1_1Map.html#a4f7eabe216b39eb4a63a8d0b4f8abf60',1,'Overseer::Map']]],
-  ['merge',['Merge',['../classOverseer_1_1Region.html#af1d0842a7f894786baa4a5af469b608d',1,'Overseer::Region']]]
+  ['region',['Region',['../classOverseer_1_1Region.html#af241efba7a6115b1b1526924ad114ec1',1,'Overseer::Region::Region()'],['../classOverseer_1_1Region.html#a8de3309b915589c86745a73c157d4a9f',1,'Overseer::Region::Region(size_t regionId, std::shared_ptr&lt; TilePosition &gt; tilePosition)']]]
 ];

@@ -12,20 +12,18 @@ Class that is used as a chokepoint container with size and positioning on the ma
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classOverseer_1_1ChokePoint_a931b3cd819ec712833ae3857dcab4f7a}{Choke\+Point} (\hyperlink{classOverseer_1_1Graph}{Graph} $\ast$graph, const \hyperlink{classOverseer_1_1Region}{Region} $\ast$region1, const \hyperlink{classOverseer_1_1Region}{Region} $\ast$region2, std\+::vector$<$ Tile\+Position $>$ tile\+Positions)
+\begin{DoxyCompactList}\small\item\em class Constructor \end{DoxyCompactList}\item 
 std\+::vector$<$ Unit\+Position $>$ \hyperlink{classOverseer_1_1ChokePoint_a94f3028b9d3ea8630500f721d6fa036d}{get\+Neutral\+Unit\+Positions} () const 
 \begin{DoxyCompactList}\small\item\em Gets the position of Neutral units (according to Blizzard\textquotesingle{}s sc2api) \end{DoxyCompactList}\item 
 std\+::pair$<$ const \hyperlink{classOverseer_1_1Region}{Region} $\ast$, const \hyperlink{classOverseer_1_1Region}{Region} $\ast$ $>$ \& \hyperlink{classOverseer_1_1ChokePoint_aa01d980ee19449f5e4557b8bc036a4e7}{get\+Regions} ()
 \begin{DoxyCompactList}\small\item\em Gets the regions where a chokepoint exists between them. \end{DoxyCompactList}\item 
-\hyperlink{classOverseer_1_1ChokePoint_a931b3cd819ec712833ae3857dcab4f7a}{Choke\+Point} (\hyperlink{classOverseer_1_1Graph}{Graph} $\ast$graph, const \hyperlink{classOverseer_1_1Region}{Region} $\ast$region1, const \hyperlink{classOverseer_1_1Region}{Region} $\ast$region2, std\+::vector$<$ Tile\+Position $>$ tile\+Positions)
-\begin{DoxyCompactList}\small\item\em class Constructor \end{DoxyCompactList}\item 
 size\+\_\+t \hyperlink{classOverseer_1_1ChokePoint_a7fd40fd88577c1bbf5c462fe03485f15}{Size} () const 
 \begin{DoxyCompactList}\small\item\em Get the size of the found chokepoint. \end{DoxyCompactList}\item 
 sc2\+::\+Point2D \hyperlink{classOverseer_1_1ChokePoint_a5e6621e9c6650cf97873b6770fe7b70c}{get\+Mid\+Point} () const 
 \begin{DoxyCompactList}\small\item\em Gets the mid point of the chokepoint. \end{DoxyCompactList}\item 
 std\+::vector$<$ sc2\+::\+Point2D $>$ \hyperlink{classOverseer_1_1ChokePoint_a5e6426e4546bfaf9cc622f4e4ab9b842}{get\+Points} ()
-\begin{DoxyCompactList}\small\item\em Gets the point position of the chokepoint. \end{DoxyCompactList}\item 
-\hyperlink{classOverseer_1_1Graph}{Graph} $\ast$ \hyperlink{classOverseer_1_1ChokePoint_a55a87da8563acfc4e7a55c1d5fae8e83}{Get\+Graph} ()
-\begin{DoxyCompactList}\small\item\em Get the graph of the chokepoint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the point position of the chokepoint. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -60,20 +58,6 @@ class Constructor
 
 
 \subsection{Member Function Documentation}
-\index{Overseer\+::\+Choke\+Point@{Overseer\+::\+Choke\+Point}!Get\+Graph@{Get\+Graph}}
-\index{Get\+Graph@{Get\+Graph}!Overseer\+::\+Choke\+Point@{Overseer\+::\+Choke\+Point}}
-\subsubsection[{\texorpdfstring{Get\+Graph()}{GetGraph()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Graph}$\ast$ Overseer\+::\+Choke\+Point\+::\+Get\+Graph (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1ChokePoint_a55a87da8563acfc4e7a55c1d5fae8e83}{}\label{classOverseer_1_1ChokePoint_a55a87da8563acfc4e7a55c1d5fae8e83}
-
-
-Get the graph of the chokepoint. 
-
-\begin{DoxyReturn}{Returns}
-chokepoint graph 
-\end{DoxyReturn}
 \index{Overseer\+::\+Choke\+Point@{Overseer\+::\+Choke\+Point}!get\+Mid\+Point@{get\+Mid\+Point}}
 \index{get\+Mid\+Point@{get\+Mid\+Point}!Overseer\+::\+Choke\+Point@{Overseer\+::\+Choke\+Point}}
 \subsubsection[{\texorpdfstring{get\+Mid\+Point() const }{getMidPoint() const }}]{\setlength{\rightskip}{0pt plus 5cm}sc2\+::\+Point2D Overseer\+::\+Choke\+Point\+::get\+Mid\+Point (

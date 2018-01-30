@@ -89,6 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
 <a href="classOverseer_1_1Map-members.html">List of all members</a>  </div>
@@ -153,15 +154,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fe859c4edbfc92971ad2ad38d69ff90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#a5fe859c4edbfc92971ad2ad38d69ff90">setBot</a> (sc2::Agent *bot)</td></tr>
 <tr class="memdesc:a5fe859c4edbfc92971ad2ad38d69ff90"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the bot into overseer  <a href="#a5fe859c4edbfc92971ad2ad38d69ff90">More...</a><br /></td></tr>
 <tr class="separator:a5fe859c4edbfc92971ad2ad38d69ff90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0b8210288ed4dfc7d68e5005614b4e3"><td class="memItemLeft" align="right" valign="top">std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#af0b8210288ed4dfc7d68e5005614b4e3">findNeighboringRegions</a> (std::shared_ptr&lt; TilePosition &gt; tilePosition)</td></tr>
-<tr class="memdesc:af0b8210288ed4dfc7d68e5005614b4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find region/regions around tile position.  <a href="#af0b8210288ed4dfc7d68e5005614b4e3">More...</a><br /></td></tr>
-<tr class="separator:af0b8210288ed4dfc7d68e5005614b4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7872066386c1a6d3ee262eb1054130d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7872066386c1a6d3ee262eb1054130d"></a>
-std::vector&lt; std::shared_ptr&lt; TilePosition &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getFrontierPositions</b> ()</td></tr>
+<tr class="memitem:aa7872066386c1a6d3ee262eb1054130d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; TilePosition &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#aa7872066386c1a6d3ee262eb1054130d">getFrontierPositions</a> ()</td></tr>
+<tr class="memdesc:aa7872066386c1a6d3ee262eb1054130d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get tiles that is between two regions.  <a href="#aa7872066386c1a6d3ee262eb1054130d">More...</a><br /></td></tr>
 <tr class="separator:aa7872066386c1a6d3ee262eb1054130d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7123e4389358218ad74ebce58680b6d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7123e4389358218ad74ebce58680b6d2"></a>
-RawFrontier&#160;</td><td class="memItemRight" valign="bottom"><b>getRawFrontier</b> ()</td></tr>
+<tr class="memitem:a7123e4389358218ad74ebce58680b6d2"><td class="memItemLeft" align="right" valign="top">RawFrontier&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Map.html#a7123e4389358218ad74ebce58680b6d2">getRawFrontier</a> ()</td></tr>
+<tr class="memdesc:a7123e4389358218ad74ebce58680b6d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">region pair and frontier map.  <a href="#a7123e4389358218ad74ebce58680b6d2">More...</a><br /></td></tr>
 <tr class="separator:a7123e4389358218ad74ebce58680b6d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:af0b8210288ed4dfc7d68e5005614b4e3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0b8210288ed4dfc7d68e5005614b4e3"></a>
+std::pair&lt; size_t, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>findNeighboringRegions</b> (std::shared_ptr&lt; TilePosition &gt; tilePosition)</td></tr>
+<tr class="separator:af0b8210288ed4dfc7d68e5005614b4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -319,39 +323,6 @@ static std::unique_ptr&lt; <a class="el" href="classOverseer_1_1Map.html">Map</a
 
 </div>
 </div>
-<a class="anchor" id="af0b8210288ed4dfc7d68e5005614b4e3"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt;size_t, size_t&gt; Overseer::Map::findNeighboringRegions </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; TilePosition &gt;&#160;</td>
-          <td class="paramname"><em>tilePosition</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Find region/regions around tile position. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tilePostition</td><td>The tile position find region/regions around. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The found region/regions. </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="aebebc1ac43ea86747ebc38f2ee0d821d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -382,6 +353,32 @@ static std::unique_ptr&lt; <a class="el" href="classOverseer_1_1Map.html">Map</a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the found tile position. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7872066386c1a6d3ee262eb1054130d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::shared_ptr&lt;TilePosition&gt; &gt; Overseer::Map::getFrontierPositions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get tiles that is between two regions. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector with tile position pointers. </dd></dl>
 
 </div>
 </div>
@@ -440,6 +437,32 @@ static std::unique_ptr&lt; <a class="el" href="classOverseer_1_1Map.html">Map</a
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to the found region. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7123e4389358218ad74ebce58680b6d2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RawFrontier Overseer::Map::getRawFrontier </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>region pair and frontier map. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector of rawfrontier. </dd></dl>
 
 </div>
 </div>

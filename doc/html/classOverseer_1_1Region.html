@@ -127,15 +127,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f2394879dc342b7ba9248eabea7258a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; TilePosition &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#a1f2394879dc342b7ba9248eabea7258a">getTilePositions</a> () const </td></tr>
 <tr class="memdesc:a1f2394879dc342b7ba9248eabea7258a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile positions within the region.  <a href="#a1f2394879dc342b7ba9248eabea7258a">More...</a><br /></td></tr>
 <tr class="separator:a1f2394879dc342b7ba9248eabea7258a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0319cac0728db48d38565bf2593a021f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0319cac0728db48d38565bf2593a021f"></a>
-std::vector&lt; sc2::Point2D &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPoints</b> ()</td></tr>
+<tr class="memitem:a0319cac0728db48d38565bf2593a021f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; sc2::Point2D &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#a0319cac0728db48d38565bf2593a021f">getPoints</a> ()</td></tr>
+<tr class="memdesc:a0319cac0728db48d38565bf2593a021f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all mid points from all tiles within this region.  <a href="#a0319cac0728db48d38565bf2593a021f">More...</a><br /></td></tr>
 <tr class="separator:a0319cac0728db48d38565bf2593a021f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcaa70e448891547ef6fd62a259c2408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#afcaa70e448891547ef6fd62a259c2408">AddTilePosition</a> (std::shared_ptr&lt; TilePosition &gt; tilePosition)</td></tr>
 <tr class="memdesc:afcaa70e448891547ef6fd62a259c2408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add tile position to region.  <a href="#afcaa70e448891547ef6fd62a259c2408">More...</a><br /></td></tr>
 <tr class="separator:afcaa70e448891547ef6fd62a259c2408"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a831c30bf7feea8a8897d3c99bbaf87d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#a831c30bf7feea8a8897d3c99bbaf87d2">AddTilePosition</a> (TilePosition tilePosition)</td></tr>
-<tr class="memdesc:a831c30bf7feea8a8897d3c99bbaf87d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add tile position to region.  <a href="#a831c30bf7feea8a8897d3c99bbaf87d2">More...</a><br /></td></tr>
-<tr class="separator:a831c30bf7feea8a8897d3c99bbaf87d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af770c2a14f8374bf4e5aaa6d9b7f8a4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#af770c2a14f8374bf4e5aaa6d9b7f8a4f">AddTilePosition</a> (TilePosition &amp;tilePosition)</td></tr>
+<tr class="memdesc:af770c2a14f8374bf4e5aaa6d9b7f8a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add tile position to region.  <a href="#af770c2a14f8374bf4e5aaa6d9b7f8a4f">More...</a><br /></td></tr>
+<tr class="separator:af770c2a14f8374bf4e5aaa6d9b7f8a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25b4ea47336ca35c9bdbe557c27575a4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Region.html#a25b4ea47336ca35c9bdbe557c27575a4">getLargestDistanceToUnpathable</a> () const </td></tr>
 <tr class="memdesc:a25b4ea47336ca35c9bdbe557c27575a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the longest path to a unpathable.  <a href="#a25b4ea47336ca35c9bdbe557c27575a4">More...</a><br /></td></tr>
 <tr class="separator:a25b4ea47336ca35c9bdbe557c27575a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,7 +229,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a831c30bf7feea8a8897d3c99bbaf87d2"></a>
+<a class="anchor" id="af770c2a14f8374bf4e5aaa6d9b7f8a4f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -239,7 +239,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void Overseer::Region::AddTilePosition </td>
           <td>(</td>
-          <td class="paramtype">TilePosition&#160;</td>
+          <td class="paramtype">TilePosition &amp;&#160;</td>
           <td class="paramname"><em>tilePosition</em></td><td>)</td>
           <td></td>
         </tr>
@@ -414,6 +414,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Returns the units and positions occupying the region. </p>
 <dl class="section return"><dt>Returns</dt><dd>const vector with unit positions. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0319cac0728db48d38565bf2593a021f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;sc2::Point2D&gt; Overseer::Region::getPoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets all mid points from all tiles within this region. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector the sc2::Point2D </dd></dl>
 
 </div>
 </div>

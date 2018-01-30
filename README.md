@@ -46,3 +46,7 @@ The documentation is for local use only and can be found [here.](https://github.
 ## License
 
 The license can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)
+
+### Third party software license
+
+* [Boost Software License Version 1.0](http://www.boost.org/LICENSE_1_0.txt): Used in Spatial c++ library

@@ -50,12 +50,14 @@ Tile\+Position\+Container \hyperlink{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70
 \begin{DoxyCompactList}\small\item\em Get all tile positions. \end{DoxyCompactList}\item 
 void \hyperlink{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}{set\+Bot} (sc2\+::\+Agent $\ast$bot)
 \begin{DoxyCompactList}\small\item\em set the bot into overseer \end{DoxyCompactList}\item 
-std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ \hyperlink{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}{find\+Neighboring\+Regions} (std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)
-\begin{DoxyCompactList}\small\item\em Find region/regions around tile position. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ $>$ {\bfseries get\+Frontier\+Positions} ()\hypertarget{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}{}\label{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}
-
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ $>$ \hyperlink{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}{get\+Frontier\+Positions} ()
+\begin{DoxyCompactList}\small\item\em Get tiles that is between two regions. \end{DoxyCompactList}\item 
+Raw\+Frontier \hyperlink{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{get\+Raw\+Frontier} ()
+\begin{DoxyCompactList}\small\item\em region pair and frontier map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-Raw\+Frontier {\bfseries get\+Raw\+Frontier} ()\hypertarget{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{}\label{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ {\bfseries find\+Neighboring\+Regions} (std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)\hypertarget{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}{}\label{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
@@ -163,25 +165,6 @@ Apends a tile to container.
 {\em tile} & The tile to add. \\
 \hline
 \end{DoxyParams}
-\index{Overseer\+::\+Map@{Overseer\+::\+Map}!find\+Neighboring\+Regions@{find\+Neighboring\+Regions}}
-\index{find\+Neighboring\+Regions@{find\+Neighboring\+Regions}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{find\+Neighboring\+Regions(std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)}{findNeighboringRegions(std::shared_ptr< TilePosition > tilePosition)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::pair$<$size\+\_\+t, size\+\_\+t$>$ Overseer\+::\+Map\+::find\+Neighboring\+Regions (
-\begin{DoxyParamCaption}
-\item[{std\+::shared\+\_\+ptr$<$ Tile\+Position $>$}]{tile\+Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}{}\label{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}
-
-
-Find region/regions around tile position. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em tile\+Postition} & The tile position find region/regions around. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The found region/regions. 
-\end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Closest\+Tile\+Position@{get\+Closest\+Tile\+Position}}
 \index{get\+Closest\+Tile\+Position@{get\+Closest\+Tile\+Position}!Overseer\+::\+Map@{Overseer\+::\+Map}}
 \subsubsection[{\texorpdfstring{get\+Closest\+Tile\+Position(sc2\+::\+Point2\+D pos)}{getClosestTilePosition(sc2::Point2D pos)}}]{\setlength{\rightskip}{0pt plus 5cm}Tile\+Position Overseer\+::\+Map\+::get\+Closest\+Tile\+Position (
@@ -200,6 +183,20 @@ Get the closest tile position.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 the found tile position. 
+\end{DoxyReturn}
+\index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Frontier\+Positions@{get\+Frontier\+Positions}}
+\index{get\+Frontier\+Positions@{get\+Frontier\+Positions}!Overseer\+::\+Map@{Overseer\+::\+Map}}
+\subsubsection[{\texorpdfstring{get\+Frontier\+Positions()}{getFrontierPositions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::shared\+\_\+ptr$<$Tile\+Position$>$ $>$ Overseer\+::\+Map\+::get\+Frontier\+Positions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}{}\label{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}
+
+
+Get tiles that is between two regions. 
+
+\begin{DoxyReturn}{Returns}
+vector with tile position pointers. 
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Height@{get\+Height}}
 \index{get\+Height@{get\+Height}!Overseer\+::\+Map@{Overseer\+::\+Map}}
@@ -231,6 +228,20 @@ Gets closest region.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 pointer to the found region. 
+\end{DoxyReturn}
+\index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Raw\+Frontier@{get\+Raw\+Frontier}}
+\index{get\+Raw\+Frontier@{get\+Raw\+Frontier}!Overseer\+::\+Map@{Overseer\+::\+Map}}
+\subsubsection[{\texorpdfstring{get\+Raw\+Frontier()}{getRawFrontier()}}]{\setlength{\rightskip}{0pt plus 5cm}Raw\+Frontier Overseer\+::\+Map\+::get\+Raw\+Frontier (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{}\label{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}
+
+
+region pair and frontier map. 
+
+\begin{DoxyReturn}{Returns}
+vector of rawfrontier. 
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Region@{get\+Region}}
 \index{get\+Region@{get\+Region}!Overseer\+::\+Map@{Overseer\+::\+Map}}

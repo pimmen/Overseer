@@ -29,12 +29,11 @@ void \hyperlink{classOverseer_1_1Region_a52fa1e6684d036d9f2761ec4cf85cd62}{set\+
 \begin{DoxyCompactList}\small\item\em set the region id \end{DoxyCompactList}\item 
 std\+::vector$<$ Tile\+Position $>$ \hyperlink{classOverseer_1_1Region_a1f2394879dc342b7ba9248eabea7258a}{get\+Tile\+Positions} () const 
 \begin{DoxyCompactList}\small\item\em Get the tile positions within the region. \end{DoxyCompactList}\item 
-std\+::vector$<$ sc2\+::\+Point2D $>$ {\bfseries get\+Points} ()\hypertarget{classOverseer_1_1Region_a0319cac0728db48d38565bf2593a021f}{}\label{classOverseer_1_1Region_a0319cac0728db48d38565bf2593a021f}
-
-\item 
+std\+::vector$<$ sc2\+::\+Point2D $>$ \hyperlink{classOverseer_1_1Region_a0319cac0728db48d38565bf2593a021f}{get\+Points} ()
+\begin{DoxyCompactList}\small\item\em Gets all mid points from all tiles within this region. \end{DoxyCompactList}\item 
 void \hyperlink{classOverseer_1_1Region_afcaa70e448891547ef6fd62a259c2408}{Add\+Tile\+Position} (std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)
 \begin{DoxyCompactList}\small\item\em Add tile position to region. \end{DoxyCompactList}\item 
-void \hyperlink{classOverseer_1_1Region_a831c30bf7feea8a8897d3c99bbaf87d2}{Add\+Tile\+Position} (Tile\+Position tile\+Position)
+void \hyperlink{classOverseer_1_1Region_af770c2a14f8374bf4e5aaa6d9b7f8a4f}{Add\+Tile\+Position} (Tile\+Position \&tile\+Position)
 \begin{DoxyCompactList}\small\item\em Add tile position to region. \end{DoxyCompactList}\item 
 double \hyperlink{classOverseer_1_1Region_a25b4ea47336ca35c9bdbe557c27575a4}{get\+Largest\+Distance\+To\+Unpathable} () const 
 \begin{DoxyCompactList}\small\item\em get the longest path to a unpathable. \end{DoxyCompactList}\item 
@@ -91,11 +90,11 @@ Add tile position to region.
 \end{DoxyParams}
 \index{Overseer\+::\+Region@{Overseer\+::\+Region}!Add\+Tile\+Position@{Add\+Tile\+Position}}
 \index{Add\+Tile\+Position@{Add\+Tile\+Position}!Overseer\+::\+Region@{Overseer\+::\+Region}}
-\subsubsection[{\texorpdfstring{Add\+Tile\+Position(\+Tile\+Position tile\+Position)}{AddTilePosition(TilePosition tilePosition)}}]{\setlength{\rightskip}{0pt plus 5cm}void Overseer\+::\+Region\+::\+Add\+Tile\+Position (
+\subsubsection[{\texorpdfstring{Add\+Tile\+Position(\+Tile\+Position \&tile\+Position)}{AddTilePosition(TilePosition &tilePosition)}}]{\setlength{\rightskip}{0pt plus 5cm}void Overseer\+::\+Region\+::\+Add\+Tile\+Position (
 \begin{DoxyParamCaption}
-\item[{Tile\+Position}]{tile\+Position}
+\item[{Tile\+Position \&}]{tile\+Position}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Region_a831c30bf7feea8a8897d3c99bbaf87d2}{}\label{classOverseer_1_1Region_a831c30bf7feea8a8897d3c99bbaf87d2}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Region_af770c2a14f8374bf4e5aaa6d9b7f8a4f}{}\label{classOverseer_1_1Region_af770c2a14f8374bf4e5aaa6d9b7f8a4f}
 
 
 Add tile position to region. 
@@ -188,6 +187,20 @@ Returns the units and positions occupying the region.
 
 \begin{DoxyReturn}{Returns}
 const vector with unit positions. 
+\end{DoxyReturn}
+\index{Overseer\+::\+Region@{Overseer\+::\+Region}!get\+Points@{get\+Points}}
+\index{get\+Points@{get\+Points}!Overseer\+::\+Region@{Overseer\+::\+Region}}
+\subsubsection[{\texorpdfstring{get\+Points()}{getPoints()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$sc2\+::\+Point2D$>$ Overseer\+::\+Region\+::get\+Points (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Region_a0319cac0728db48d38565bf2593a021f}{}\label{classOverseer_1_1Region_a0319cac0728db48d38565bf2593a021f}
+
+
+Gets all mid points from all tiles within this region. 
+
+\begin{DoxyReturn}{Returns}
+vector the sc2\+::\+Point2D 
 \end{DoxyReturn}
 \index{Overseer\+::\+Region@{Overseer\+::\+Region}!get\+Tile\+Positions@{get\+Tile\+Positions}}
 \index{get\+Tile\+Positions@{get\+Tile\+Positions}!Overseer\+::\+Region@{Overseer\+::\+Region}}

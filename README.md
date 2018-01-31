@@ -36,6 +36,8 @@ Number of regions: 18
 
 If you want the number of `ChokePoint` you have to check for each region pair since a pair of regions could have multiple `ChokePoint`
 
+Demo for commandcenter is found [here.](https://github.com/pimmen89/Overseer/blob/master/demo/commandcenter.md)
+
 ## Project status
 
 Overseer is currently under construction. Feel free to make a pull request!

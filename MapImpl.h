@@ -1,5 +1,5 @@
-#ifndef MapImpl_h
-#define MapImpl_h
+#ifndef _MAPIMPL_H_
+#define _MAPIMPL_H_
 
 #include "Graph.h"
 #include "Map.h"
@@ -63,4 +63,4 @@ namespace Overseer{
             static const size_t min_region_area = 80;
     };
 }
-#endif /* MapImpl_h */
+#endif /* _MAPIMPL_H_ */

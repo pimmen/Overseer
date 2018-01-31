@@ -6,13 +6,13 @@
 ****************************
 */
 
-MapImpl::~MapImpl(){}
+Overseer::MapImpl::~MapImpl(){}
 
-MapImpl::MapImpl(sc2::Agent* bot):Map(bot){}
+Overseer::MapImpl::MapImpl(sc2::Agent* bot):Map(bot){}
 
-MapImpl::MapImpl():Map(){}
+Overseer::MapImpl::MapImpl():Map(){}
 
-void MapImpl::Initialize(){
+void Overseer::MapImpl::Initialize(){
     m_graph.setMap(this);
     CreateTiles();
     ComputeAltitudes();
@@ -22,7 +22,7 @@ void MapImpl::Initialize(){
     m_graph.CreateChokePoints();
 }
 
-Graph MapImpl::getGraph(){
+Overseer::Graph Overseer::MapImpl::getGraph(){
 	
 	return m_graph; 
 }
@@ -36,13 +36,12 @@ Graph MapImpl::getGraph(){
 ***************************
 ***************************
 
-
 *****************************
 *** Priavte members start ***
 *****************************
 */
 
-void MapImpl::CreateTiles() {
+void Overseer::MapImpl::CreateTiles() {
 
     for (size_t x(0); x < m_width; ++x) {
 
@@ -65,7 +64,7 @@ void MapImpl::CreateTiles() {
     }
 }
 
-void MapImpl::ComputeAltitudes() {
+void Overseer::MapImpl::ComputeAltitudes() {
     
     //For each buildable tile, find the distance to the nearest unbuildable tile
     for(auto& buildableTile: m_buildableTiles) {
@@ -89,7 +88,7 @@ void MapImpl::ComputeAltitudes() {
     }
 }
 
-std::vector<Region> MapImpl::ComputeTempRegions() {
+std::vector<Overseer::Region> Overseer::MapImpl::ComputeTempRegions() {
     std::vector<Region> tmp_regions(1);
     
     for(auto& buildableTile: m_buildableTiles) {
@@ -128,7 +127,7 @@ std::vector<Region> MapImpl::ComputeTempRegions() {
     return tmp_regions;
 }
 
-void MapImpl::CreateRegions(std::vector<Region> tmp_regions) {
+void Overseer::MapImpl::CreateRegions(std::vector<Region> tmp_regions) {
     size_t index = 1;
     
     for(auto& tmp_region: tmp_regions) {
@@ -141,7 +140,7 @@ void MapImpl::CreateRegions(std::vector<Region> tmp_regions) {
     }
 }
 
-void MapImpl::CreateFrontiers(){
+void Overseer::MapImpl::CreateFrontiers(){
     
     //Create frontier positions between regions
     for(auto& frontierPosition : getFrontierPositions()) {

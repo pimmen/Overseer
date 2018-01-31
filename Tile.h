@@ -1,5 +1,7 @@
 #ifndef Tile_h
-#define Tile_hz
+#define Tile_h
+
+#include <cstdio>
 
 namespace Overseer{
     
@@ -14,62 +16,58 @@ namespace Overseer{
             *
             * \return true is tile is buildable, false otherwise
             */
-            bool Buildable(){return m_tileInfo.buildable;}
+            bool Buildable();
             
             /**
             * \brief Get the z-axis value for the tile.
             *
             * \return z-axis value.
             */
-            int GroundHeight(){return m_tileInfo.groundHeight;}
+            int GroundHeight();
             
             /**
             * \brief corently not used...
             */
-            bool Doodad(){return m_tileInfo.doodad;}
+            bool Doodad();
             
             /**
             * \brief Set a tile to buildable.
             *
             * \param buildable boolean value, true if buildable and false otherwise.
             */
-            void setBuildable(bool buildable){m_tileInfo.buildable = buildable;}
+            void setBuildable(bool buildable);
             
             /**
             * \brief Set a distance to the nearest unpathable tile.
             *
             * \param dist The distance til unpathable.
             */
-            void setDistNearestUnpathable(float dist){m_distNearestUnpathable = dist;}
+            void setDistNearestUnpathable(float dist);
             
             /**
             * \brief Get the distance to nearest unpathable.
             *
             * \return distance.
             */
-            float getDistNearestUnpathable() const {return m_distNearestUnpathable;}
+            float getDistNearestUnpathable() const;
             
             /**
             * \brief Set the region id this tile belong to.
             *
             * \param regionId the id to set.
             */
-            void setRegionId(size_t regionId) {
-                m_regionId = regionId;
-            }
+            void setRegionId(size_t regionId);
             
             /**
             * \brief Get the region id this tile is in.
             *
             * \return regionid
             */
-            size_t getRegionId(){
-                return m_regionId;
-            }
+            size_t getRegionId();
             
         private:
             struct TileInfo {
-                TileInfo() : buildable(false), groundHeight(0), doodad(false) {}
+                TileInfo();
                 bool            buildable:true;
                 size_t          groundHeight:2;
                 bool            doodad:true;

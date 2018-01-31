@@ -1,6 +1,6 @@
 
-#ifndef Definitions_h
-#define Definitions_h
+#ifndef _OVERSEER_DEFINITIONS_H_
+#define _OVERSEER_DEFINITIONS_H_
 
 namespace Overseer{
 	namespace constants {
@@ -10,4 +10,4 @@ namespace Overseer{
 }
 
 
-#endif /* Definitions_h */
+#endif /* _OVERSEER_DEFINITIONS_H_ */

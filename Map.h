@@ -1,8 +1,10 @@
-#ifndef Map_h
-#define Map_h
+#ifndef _OVERSEER_MAP_H_
+#define _OVERSEER_MAP_H_
 
 #include "ChokePoint.h"
 #include "Graph.h"
+#include "Region.h"
+
 #include "spatial/box_multimap.hpp"
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"
@@ -18,13 +20,7 @@ namespace Overseer{
     * \brief Fix indexing in spatial.
     */
     struct point2d_accessor {
-        int operator() (spatial::dimension_type dim, const sc2::Point2D p) const {
-            switch(dim) {
-                case 0: return p.x;
-                case 1: return p.y;
-                default: throw std::out_of_range("dim");
-            }
-        }
+        int operator() (spatial::dimension_type dim, const sc2::Point2D p) const;
     };
 
     typedef spatial::box_multimap<2, sc2::Point2D, std::shared_ptr<Tile>, spatial::accessor_less<point2d_accessor, sc2::Point2D>> TilePositionContainer;
@@ -41,45 +37,34 @@ namespace Overseer{
     class Map {
         public:
 
-            Map(){}
+            Map();
             /**
             * \brief constructor.
             *
             * \param bot The Starcraft II bot.
             */
-            Map(sc2::Agent* bot){
-                m_bot = bot;
-                m_width  = m_bot->Observation()->GetGameInfo().width;
-                m_height = m_bot->Observation()->GetGameInfo().height;
-            }
+            Map(sc2::Agent* bot);
             
             /**
             * \Brief Gets the map height.
             *
             * \return the height.
             */
-            size_t getHeight() const { return m_height; }
+            size_t getHeight() const;
             
             /**
             * \brief Gets the map width.
             *
             * \return the width.
             */
-            size_t getWidth() const { return m_width; }
+            size_t getWidth() const;
             
             /**
             * \brief Gets all the regions found.
             *
             * \return vector of region pointers.
             */
-            std::vector<std::shared_ptr<Region>> getRegions() {
-                std::vector<std::shared_ptr<Region>> regions;
-                for(RegionMap::iterator it = m_regions.begin(); it != m_regions.end(); it++) {
-                    regions.push_back(it->second);
-                }
-                
-                return regions;
-            }
+            std::vector<std::shared_ptr<Region>> getRegions();
             
             /**
             * \brief Get a specific region.
@@ -87,9 +72,7 @@ namespace Overseer{
             * \param id The id of the specific region.
             * \return 
             */
-            Region *getRegion(size_t id){
-                return (m_regions.find(id) != m_regions.end()) ? m_regions[id].get() : nullptr;
-            }
+            Region* getRegion(size_t id);
             
             /**
             * \brief Gets closest region.
@@ -97,17 +80,7 @@ namespace Overseer{
             * \param pos Is the position point to find region from.
             * \return pointer to the found region. 
             */
-            const Region *getNearestRegion(sc2::Point2D pos){
-                Region *region = nullptr;
-                
-                for(spatial::neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos); iter != neighbor_end(m_tilePositions, pos); iter++) {
-                    if(iter->second->getRegionId()){
-                        return getRegion(iter->second->getRegionId());
-                    }
-                }
-                
-                return region;
-            }
+            const Region* getNearestRegion(sc2::Point2D pos);
             
             /**
             * \brief Apends a tile to container.
@@ -115,18 +88,14 @@ namespace Overseer{
             * \param pos The tile position.
             * \param tile The tile to add.
             */
-            void addTile(sc2::Point2D& pos, std::shared_ptr<Tile> tile){
-                m_tilePositions.insert(std::make_pair(pos, tile));
-            }
+            void addTile(sc2::Point2D& pos, std::shared_ptr<Tile> tile);
             
             /**
             * \brief Check if a position is on map
             *
             * \return True if position is within the map, false otherwise.
             */
-            bool Valid(sc2::Point2D pos) const {
-                return ((0 <= pos.x) && (pos.x <= m_width) && (0 <= pos.y) && (pos.y <= m_height));
-            }
+            bool Valid(sc2::Point2D pos) const;
             
             /**
             * \brief Get the closest tile position.
@@ -134,18 +103,14 @@ namespace Overseer{
             * \param pos of the tile position to find.
             * \return the found tile position.
             */
-            TilePosition getClosestTilePosition(sc2::Point2D pos) {
-                spatial::neighbor_iterator<TilePositionContainer> iter = neighbor_begin(m_tilePositions, pos);
-                iter++;
-                return *iter;
-            }
+            TilePosition getClosestTilePosition(sc2::Point2D pos);
             
             /**
             * \brief Apends a region to the container.
             *
             * \param region The Region to apend.
             */
-            void addRegion(Region region) { m_regions[region.getId()] = std::make_shared<Region>(region); }
+            void addRegion(Region region);
             
             /**
             * \brief Gets a tile based on the position.
@@ -153,73 +118,45 @@ namespace Overseer{
             * \param pos The position of the tile.
             * \return the found tile.
             */
-            std::shared_ptr<Tile> GetTile(sc2::Point2D pos) { return m_tilePositions.find(pos)->second; }
+            std::shared_ptr<Tile> GetTile(sc2::Point2D pos);
             
             /**
             * \brief Gets the size of the tile position container.
             *
             * \return the size of container.
             */
-            size_t size() { return m_tilePositions.size(); }
+            size_t size();
             
             /**
             * \brief Get all tile positions
             * 
             * \return the tile position container.
             */
-            TilePositionContainer getTilePositions() { return m_tilePositions; }
-            
+            TilePositionContainer getTilePositions();          
             /**
             * \brief set the bot into overseer
             *
             * \param bot The bot witch overseer will use.
             */
-            void setBot(sc2::Agent* bot){
-                m_bot = bot;
-                m_width  = m_bot->Observation()->GetGameInfo().width;
-                m_height = m_bot->Observation()->GetGameInfo().height;
-            }
+            void setBot(sc2::Agent* bot);
             
             /**
             * \brief Get tiles that is between two regions.
             *
             * \return vector with tile position pointers.
             */
-            std::vector<std::shared_ptr<TilePosition>> getFrontierPositions(){ return m_frontierPositions; }
+            std::vector<std::shared_ptr<TilePosition>> getFrontierPositions();
             
             /**
             * \brief region pair and frontier map.
             *
             * \return vector of rawfrontier.
             */
-            RawFrontier getRawFrontier() { return m_rawFrontier; }
+            RawFrontier getRawFrontier();
             
         protected:
             
-            std::pair<size_t, size_t> findNeighboringRegions(std::shared_ptr<TilePosition> tilePosition) {
-                std::pair<size_t, size_t> result(0,0);
-                
-                for(sc2::Point2D delta: {sc2::Point2D(0,-1), sc2::Point2D(0,1), sc2::Point2D(-1,0), sc2::Point2D(1,0)}) {
-                    if(Valid(tilePosition->first + delta)) {
-                        std::shared_ptr<Tile> deltaTile = GetTile(tilePosition->first + delta);
-                        if(deltaTile->Buildable()) {
-                            size_t regionId = deltaTile->getRegionId();
-                            
-                            if(regionId) {
-                                if(!result.first) {
-                                    result.first = regionId;
-                                } else if(result.first != regionId) {
-                                    if(!result.second || regionId < result.second) {
-                                        result.second = regionId;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                return result;
-            }
+            std::pair<size_t, size_t> findNeighboringRegions(std::shared_ptr<TilePosition> tilePosition);
 
             sc2::Agent* m_bot;
             static std::unique_ptr<Map> m_gInstance;
@@ -241,4 +178,4 @@ namespace Overseer{
 
 }
 
-#endif /* Map_h */
+#endif /* _OVERSEER_MAP_H_ */

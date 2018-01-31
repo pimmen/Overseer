@@ -1,5 +1,5 @@
-#ifndef ChokePoint_h
-#define ChokePoint_h
+#ifndef _OVERSEER_CHOKEPOINT_H_
+#define _OVERSEER_CHOKEPOINT_H_
 
 #include "Region.h"
 #include "Graph.h"
@@ -7,6 +7,7 @@
 #include <utility>
 
 namespace Overseer{
+    
     class Graph;
 
     /**
@@ -24,66 +25,42 @@ namespace Overseer{
             * \param region2 is a adjecent region to region1
             * \param tilePositions is the "limits" between region1 and region2
             */
-            ChokePoint(Graph *graph, const Region* region1, const Region* region2, std::vector<TilePosition> tilePositions){
-                p_graph = graph;
-                
-                m_regions.first = region1;
-                m_regions.second = region2;
-                m_tilePositions = tilePositions;
-
-                std::vector<TilePosition>::iterator midTilePosition = std::max_element(m_tilePositions.begin(), m_tilePositions.end(),
-                    [](TilePosition a, TilePosition b){ return a.second->getDistNearestUnpathable() < b.second->getDistNearestUnpathable(); });
-
-                m_center = *midTilePosition;
-            }
+            ChokePoint(Graph* graph, const Region* region1, const Region* region2, std::vector<TilePosition> tilePositions);
 
             /**
             * \brief Gets the position of Neutral units (according to Blizzard's sc2api)
             *
             * \return A vector containing the found neutralunitpositions
             */
-            std::vector<UnitPosition> getNeutralUnitPositions() const {return m_neutralUnitPositions;}
+            std::vector<UnitPosition> getNeutralUnitPositions() const;
             
             /**
             * \brief Gets the regions where a chokepoint exists between them.
             *
             * \return pair containing adjecent regions with chokepoint between them
             */
-            std::pair<const Region *, const Region *> & getRegions() {return m_regions;}
+            std::pair<const Region *, const Region *> & getRegions();
             
             /**
             * \brief Get the size of the found chokepoint
             *
             * \return The size of the chokepoint
             */
-            size_t Size() const { return m_tilePositions.size(); }
+            size_t Size() const;
             
             /**
             * \brief Gets the mid point of the chokepoint
             *
             * \return The mid point of the chokepoint
             */
-            sc2::Point2D getMidPoint() const {
-                
-                return m_center.first;
-            }
+            sc2::Point2D getMidPoint() const;
 
             /**
             * \brief Gets the point position of the chokepoint.
             *
             * \return vector containing chokepoint positions
             */
-            std::vector<sc2::Point2D> getPoints() {
-                std::vector<sc2::Point2D> points;
-                
-                for(auto const & tilePosition : m_tilePositions) {
-                    points.push_back(tilePosition.first);
-                }
-                
-                return points;
-            }
-
-            
+            std::vector<sc2::Point2D> getPoints();
 
         private:
             /**
@@ -91,7 +68,7 @@ namespace Overseer{
             *
             * \return chokepoint graph
             */
-            Graph * GetGraph(){ return p_graph; }
+            Graph* GetGraph();
 
             std::pair<const Region *, const Region *> m_regions;
             std::vector<UnitPosition> m_neutralUnitPositions;
@@ -102,4 +79,4 @@ namespace Overseer{
     };
 }
 
-#endif /* ChokePoint_h */
+#endif /* _OVERSEER_CHOKEPOINT_H_ */

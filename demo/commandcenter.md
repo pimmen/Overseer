@@ -131,3 +131,6 @@ Number of tiles on map: 26752
 Number of regions: 18
 ```
 
+## Overseer
+
+Overseer has a lot more to offer then this and documentation for overseer can be found [here.](https://github.com/pimmen89/Overseer/tree/master/doc/html)

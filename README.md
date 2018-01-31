@@ -35,6 +35,7 @@ Number of regions: 18
 ```
 
 If you want the number of `ChokePoint` you have to check for each region pair since a pair of regions could have multiple `ChokePoint`
+
 ## Project status
 
 Overseer is currently under construction. Feel free to make a pull request!

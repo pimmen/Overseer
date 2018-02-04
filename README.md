@@ -48,7 +48,7 @@ The documentation is for local use only and can be found [here.](https://github.
 
 ## License
 
-The license can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)
+The license for this software (Overseer) can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)
 
 ### Third party software license
 

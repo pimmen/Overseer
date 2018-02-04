@@ -3,11 +3,12 @@
 
 [![Overseer](http://images.ctrustnetwork.com/static_pages/gaming/starcraft/unit_images_white/starcraft.2.overseer.png)](#features)
 
-Header only library for analyzing Starcraft 2 maps by region decomposition. Based on the [Brood War Easy Map architecture](http://bwem.sourceforge.net/) created by Igor Dimitrijevic. It uses the MIT license.
+Library for analyzing Starcraft 2 maps by region decomposition. Based on the [Brood War Easy Map architecture](http://bwem.sourceforge.net/) created by Igor Dimitrijevic. It uses the MIT license.
 
 ## Getting started
 
-Overseer is header only, you just need to include the folder anywhere in your source folder to use it.
+Demo for commandcenter is found [here.](https://github.com/pimmen89/Overseer/blob/master/demo/commandcenter.md)
+
 Include the file `MapImpl.h` into your project to get started.
 
 `#include "Overseer/MapImpl.h"`
@@ -35,8 +36,6 @@ Number of regions: 18
 ```
 
 If you want the number of `ChokePoint` you have to check for each region pair since a pair of regions could have multiple `ChokePoint`
-
-Demo for commandcenter is found [here.](https://github.com/pimmen89/Overseer/blob/master/demo/commandcenter.md)
 
 ## Project status
 

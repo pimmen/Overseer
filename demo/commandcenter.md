@@ -1,6 +1,6 @@
 # Command center compile
 
-So due to [commandcenter](https://github.com/davechurchill/commandcenter) is a very common bot to start out with we will do a demonstration of how we can use Overseer in it. 
+So due to [commandcenter](https://github.com/davechurchill/commandcenter) is a very common bot to start out with, we will do a short demonstration of how we can use Overseer in it. 
 
 Guide limitation:
 

@@ -111,7 +111,7 @@ void MapTools::onStart()
     m_width  = BWAPI::Broodwar->mapWidth();
     m_height = BWAPI::Broodwar->mapHeight();
 #endif
-    overseerMap.setBot(&m_bot);
+    overseerMap.setBot(&m_bot); //ADD THIS LINE (OVERSEER)
     overseerMap.Initialize(); //ADD THIS LINE (OVERSEER)
     std::cout << "Number of tiles on map: " << overseerMap.size() << std::endl; //ADD THIS LINE (OVERSEER)
     std::cout << "Number of regions: " << overseerMap.getRegions().size() << std::endl; //ADD THIS LINE (OVERSEER)
@@ -123,9 +123,9 @@ That is it, now commandcenter is ready to be compiled with overseer:
 * Compile commandcenter `$ cmake . && make`.
 * Run commandcenter
 
-Wanted output is something like:
+Wanted **output** is something like (will change depending on map):
 
-```
+```shell
 WaitJoinGame finished successfully.
 Number of tiles on map: 26752
 Number of regions: 18
@@ -133,4 +133,4 @@ Number of regions: 18
 
 ## Overseer
 
-Overseer has a lot more to offer then this and documentation for overseer can be found [here.](https://github.com/pimmen89/Overseer/tree/master/doc/html)
+**Note:** Overseer has a lot more to offer then what has been shown in this demo all of which is shown in the [documentation for overseer.](https://github.com/pimmen89/Overseer/tree/master/doc/html)

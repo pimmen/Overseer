@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,9 +108,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9efde8054cddf829f36a66ff8df5e8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Graph.html#af9efde8054cddf829f36a66ff8df5e8b">Graph</a> (<a class="el" href="classOverseer_1_1Map.html">Map</a> *map)</td></tr>
 <tr class="memdesc:af9efde8054cddf829f36a66ff8df5e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">object constructor.  <a href="#af9efde8054cddf829f36a66ff8df5e8b">More...</a><br /></td></tr>
 <tr class="separator:af9efde8054cddf829f36a66ff8df5e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4032b7e8b2c2e936664eef011a8273a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classOverseer_1_1ChokePoint.html">ChokePoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Graph.html#ae4032b7e8b2c2e936664eef011a8273a">getChokePoints</a> (size_t region_id_a, size_t region_id_b) const </td></tr>
-<tr class="memdesc:ae4032b7e8b2c2e936664eef011a8273a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the chokepoints been descovered between two adjacent regions.  <a href="#ae4032b7e8b2c2e936664eef011a8273a">More...</a><br /></td></tr>
-<tr class="separator:ae4032b7e8b2c2e936664eef011a8273a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a066ffec487ded799cd8894cd870cabc8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classOverseer_1_1ChokePoint.html">ChokePoint</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Graph.html#a066ffec487ded799cd8894cd870cabc8">getChokePoints</a> (size_t region_id_a, size_t region_id_b) const </td></tr>
+<tr class="memdesc:a066ffec487ded799cd8894cd870cabc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the chokepoints been descovered between two adjacent regions.  <a href="#a066ffec487ded799cd8894cd870cabc8">More...</a><br /></td></tr>
+<tr class="separator:a066ffec487ded799cd8894cd870cabc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc6459d9a554bdbfbe7fdfb87b3177cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc6459d9a554bdbfbe7fdfb87b3177cd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOverseer_1_1Graph.html#abc6459d9a554bdbfbe7fdfb87b3177cd">CreateChokePoints</a> ()</td></tr>
 <tr class="memdesc:abc6459d9a554bdbfbe7fdfb87b3177cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">find and create the chokepoint on the map. <br /></td></tr>
@@ -129,9 +128,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="anchor" id="af9efde8054cddf829f36a66ff8df5e8b"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Overseer::Graph::Graph </td>
@@ -141,11 +137,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>object constructor. </p>
@@ -162,9 +153,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="anchor" id="a9b44f014d61872c88c729f17b11fe926"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Overseer::Graph::ComputeAdjacencyMatrix </td>
@@ -174,11 +162,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Build triagular matrix to store region adjacency. </p>
@@ -191,15 +174,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="ae4032b7e8b2c2e936664eef011a8273a"></a>
+<a class="anchor" id="a066ffec487ded799cd8894cd870cabc8"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classOverseer_1_1ChokePoint.html">ChokePoint</a>&gt; Overseer::Graph::getChokePoints </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classOverseer_1_1ChokePoint.html">ChokePoint</a> &gt; Overseer::Graph::getChokePoints </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>region_id_a</em>, </td>
@@ -216,11 +196,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Gets the chokepoints been descovered between two adjacent regions. </p>
@@ -238,9 +213,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="anchor" id="ad515783d1196207bc2c34637f421b593"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Overseer::Graph::setMap </td>
@@ -250,11 +222,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>set the sc2 map to this class. </p>
@@ -267,8 +234,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="Graph_8h_source.html">Graph.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/mejan/src/commandcenter/src/Overseer/src/<a class="el" href="Graph_8h_source.html">Graph.h</a></li>
+<li>/home/mejan/src/commandcenter/src/Overseer/src/Graph.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

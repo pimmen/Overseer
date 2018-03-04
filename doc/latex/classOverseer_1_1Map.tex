@@ -11,8 +11,7 @@ is the overseer map that holds the most \char`\"{}important\char`\"{} functional
 
 
 
-Inheritance diagram for Overseer\+:\+:Map\+:
-\nopagebreak
+Inheritance diagram for Overseer\+:\+:Map\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,11 +27,11 @@ size\+\_\+t \hyperlink{classOverseer_1_1Map_a9993be7938014be6b9d66ffb0475a311}{g
 \item 
 size\+\_\+t \hyperlink{classOverseer_1_1Map_a803fae03c7ba59500f55c05dbc269c34}{get\+Width} () const 
 \begin{DoxyCompactList}\small\item\em Gets the map width. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classOverseer_1_1Region}{Region} $>$ $>$ \hyperlink{classOverseer_1_1Map_aebe6ebfce6f851c0f2e9cb86aaad9ade}{get\+Regions} ()
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classOverseer_1_1Region}{Region} $>$ $>$ \hyperlink{classOverseer_1_1Map_a90e9f9fd99091c142c4f07c5dc2ae7a3}{get\+Regions} ()
 \begin{DoxyCompactList}\small\item\em Gets all the regions found. \end{DoxyCompactList}\item 
-\hyperlink{classOverseer_1_1Region}{Region} $\ast$ \hyperlink{classOverseer_1_1Map_a98a38caabf4efc5fb586c84106ee09de}{get\+Region} (size\+\_\+t id)
+\hyperlink{classOverseer_1_1Region}{Region} $\ast$ \hyperlink{classOverseer_1_1Map_a419096dd4589e51c22b12018b8d9cbc1}{get\+Region} (size\+\_\+t id)
 \begin{DoxyCompactList}\small\item\em Get a specific region. \end{DoxyCompactList}\item 
-const \hyperlink{classOverseer_1_1Region}{Region} $\ast$ \hyperlink{classOverseer_1_1Map_ade63742e200817b1b2ab12a1637decbb}{get\+Nearest\+Region} (sc2\+::\+Point2D pos)
+const \hyperlink{classOverseer_1_1Region}{Region} $\ast$ \hyperlink{classOverseer_1_1Map_ad49a674353cdf1fdda3aadc929fdbce0}{get\+Nearest\+Region} (sc2\+::\+Point2D pos)
 \begin{DoxyCompactList}\small\item\em Gets closest region. \end{DoxyCompactList}\item 
 void \hyperlink{classOverseer_1_1Map_afb26aba6abeaa039ae83b40c8235dee9}{add\+Tile} (sc2\+::\+Point2D \&pos, std\+::shared\+\_\+ptr$<$ \hyperlink{classOverseer_1_1Tile}{Tile} $>$ tile)
 \begin{DoxyCompactList}\small\item\em Apends a tile to container. \end{DoxyCompactList}\item 
@@ -42,7 +41,7 @@ Tile\+Position \hyperlink{classOverseer_1_1Map_aebebc1ac43ea86747ebc38f2ee0d821d
 \begin{DoxyCompactList}\small\item\em Get the closest tile position. \end{DoxyCompactList}\item 
 void \hyperlink{classOverseer_1_1Map_afa19b5f826a5a4d37258e000bfa646a9}{add\+Region} (\hyperlink{classOverseer_1_1Region}{Region} region)
 \begin{DoxyCompactList}\small\item\em Apends a region to the container. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ \hyperlink{classOverseer_1_1Tile}{Tile} $>$ \hyperlink{classOverseer_1_1Map_a12059a2ddd7ecc91c2a7bd643bae6813}{Get\+Tile} (sc2\+::\+Point2D pos)
+std\+::shared\+\_\+ptr$<$ \hyperlink{classOverseer_1_1Tile}{Tile} $>$ \hyperlink{classOverseer_1_1Map_a7df832c0a80c21cd79a18df2158f3989}{Get\+Tile} (sc2\+::\+Point2D pos)
 \begin{DoxyCompactList}\small\item\em Gets a tile based on the position. \end{DoxyCompactList}\item 
 size\+\_\+t \hyperlink{classOverseer_1_1Map_a29777413d8ac109aeb6f974a7b2fc25c}{size} ()
 \begin{DoxyCompactList}\small\item\em Gets the size of the tile position container. \end{DoxyCompactList}\item 
@@ -50,14 +49,14 @@ Tile\+Position\+Container \hyperlink{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70
 \begin{DoxyCompactList}\small\item\em Get all tile positions. \end{DoxyCompactList}\item 
 void \hyperlink{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}{set\+Bot} (sc2\+::\+Agent $\ast$bot)
 \begin{DoxyCompactList}\small\item\em set the bot into overseer \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ $>$ \hyperlink{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}{get\+Frontier\+Positions} ()
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ $>$ \hyperlink{classOverseer_1_1Map_a25596fe2da226652be51c7f80b28e28d}{get\+Frontier\+Positions} ()
 \begin{DoxyCompactList}\small\item\em Get tiles that is between two regions. \end{DoxyCompactList}\item 
 Raw\+Frontier \hyperlink{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{get\+Raw\+Frontier} ()
 \begin{DoxyCompactList}\small\item\em region pair and frontier map. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ {\bfseries find\+Neighboring\+Regions} (std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)\hypertarget{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}{}\label{classOverseer_1_1Map_af0b8210288ed4dfc7d68e5005614b4e3}
+std\+::pair$<$ size\+\_\+t, size\+\_\+t $>$ {\bfseries find\+Neighboring\+Regions} (std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ tile\+Position)\hypertarget{classOverseer_1_1Map_aa27d53a051f421b9ea93e217b0313359}{}\label{classOverseer_1_1Map_aa27d53a051f421b9ea93e217b0313359}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
@@ -117,7 +116,7 @@ is the overseer map that holds the most \char`\"{}important\char`\"{} functional
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Agent $\ast$}]{bot}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a4f7eabe216b39eb4a63a8d0b4f8abf60}{}\label{classOverseer_1_1Map_a4f7eabe216b39eb4a63a8d0b4f8abf60}
+)}\hypertarget{classOverseer_1_1Map_a4f7eabe216b39eb4a63a8d0b4f8abf60}{}\label{classOverseer_1_1Map_a4f7eabe216b39eb4a63a8d0b4f8abf60}
 
 
 constructor. 
@@ -136,7 +135,7 @@ constructor.
 \begin{DoxyParamCaption}
 \item[{{\bf Region}}]{region}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_afa19b5f826a5a4d37258e000bfa646a9}{}\label{classOverseer_1_1Map_afa19b5f826a5a4d37258e000bfa646a9}
+)}\hypertarget{classOverseer_1_1Map_afa19b5f826a5a4d37258e000bfa646a9}{}\label{classOverseer_1_1Map_afa19b5f826a5a4d37258e000bfa646a9}
 
 
 Apends a region to the container. 
@@ -153,7 +152,7 @@ Apends a region to the container.
 \item[{sc2\+::\+Point2D \&}]{pos, }
 \item[{std\+::shared\+\_\+ptr$<$ {\bf Tile} $>$}]{tile}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_afb26aba6abeaa039ae83b40c8235dee9}{}\label{classOverseer_1_1Map_afb26aba6abeaa039ae83b40c8235dee9}
+)}\hypertarget{classOverseer_1_1Map_afb26aba6abeaa039ae83b40c8235dee9}{}\label{classOverseer_1_1Map_afb26aba6abeaa039ae83b40c8235dee9}
 
 
 Apends a tile to container. 
@@ -171,7 +170,7 @@ Apends a tile to container.
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Point2D}]{pos}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_aebebc1ac43ea86747ebc38f2ee0d821d}{}\label{classOverseer_1_1Map_aebebc1ac43ea86747ebc38f2ee0d821d}
+)}\hypertarget{classOverseer_1_1Map_aebebc1ac43ea86747ebc38f2ee0d821d}{}\label{classOverseer_1_1Map_aebebc1ac43ea86747ebc38f2ee0d821d}
 
 
 Get the closest tile position. 
@@ -186,11 +185,11 @@ the found tile position.
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Frontier\+Positions@{get\+Frontier\+Positions}}
 \index{get\+Frontier\+Positions@{get\+Frontier\+Positions}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{get\+Frontier\+Positions()}{getFrontierPositions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::shared\+\_\+ptr$<$Tile\+Position$>$ $>$ Overseer\+::\+Map\+::get\+Frontier\+Positions (
+\subsubsection[{\texorpdfstring{get\+Frontier\+Positions()}{getFrontierPositions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Tile\+Position $>$ $>$ Overseer\+::\+Map\+::get\+Frontier\+Positions (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}{}\label{classOverseer_1_1Map_aa7872066386c1a6d3ee262eb1054130d}
+)}\hypertarget{classOverseer_1_1Map_a25596fe2da226652be51c7f80b28e28d}{}\label{classOverseer_1_1Map_a25596fe2da226652be51c7f80b28e28d}
 
 
 Get tiles that is between two regions. 
@@ -204,7 +203,7 @@ vector with tile position pointers.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a9993be7938014be6b9d66ffb0475a311}{}\label{classOverseer_1_1Map_a9993be7938014be6b9d66ffb0475a311}
+) const}\hypertarget{classOverseer_1_1Map_a9993be7938014be6b9d66ffb0475a311}{}\label{classOverseer_1_1Map_a9993be7938014be6b9d66ffb0475a311}
 Gets the map height.
 
 \begin{DoxyReturn}{Returns}
@@ -212,11 +211,11 @@ the height.
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Nearest\+Region@{get\+Nearest\+Region}}
 \index{get\+Nearest\+Region@{get\+Nearest\+Region}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{get\+Nearest\+Region(sc2\+::\+Point2\+D pos)}{getNearestRegion(sc2::Point2D pos)}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Region}$\ast$ Overseer\+::\+Map\+::get\+Nearest\+Region (
+\subsubsection[{\texorpdfstring{get\+Nearest\+Region(sc2\+::\+Point2\+D pos)}{getNearestRegion(sc2::Point2D pos)}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Region} $\ast$ Overseer\+::\+Map\+::get\+Nearest\+Region (
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Point2D}]{pos}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_ade63742e200817b1b2ab12a1637decbb}{}\label{classOverseer_1_1Map_ade63742e200817b1b2ab12a1637decbb}
+)}\hypertarget{classOverseer_1_1Map_ad49a674353cdf1fdda3aadc929fdbce0}{}\label{classOverseer_1_1Map_ad49a674353cdf1fdda3aadc929fdbce0}
 
 
 Gets closest region. 
@@ -235,7 +234,7 @@ pointer to the found region.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{}\label{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}
+)}\hypertarget{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}{}\label{classOverseer_1_1Map_a7123e4389358218ad74ebce58680b6d2}
 
 
 region pair and frontier map. 
@@ -245,11 +244,11 @@ vector of rawfrontier.
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Region@{get\+Region}}
 \index{get\+Region@{get\+Region}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{get\+Region(size\+\_\+t id)}{getRegion(size_t id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Region}$\ast$ Overseer\+::\+Map\+::get\+Region (
+\subsubsection[{\texorpdfstring{get\+Region(size\+\_\+t id)}{getRegion(size_t id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Region} $\ast$ Overseer\+::\+Map\+::get\+Region (
 \begin{DoxyParamCaption}
 \item[{size\+\_\+t}]{id}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a98a38caabf4efc5fb586c84106ee09de}{}\label{classOverseer_1_1Map_a98a38caabf4efc5fb586c84106ee09de}
+)}\hypertarget{classOverseer_1_1Map_a419096dd4589e51c22b12018b8d9cbc1}{}\label{classOverseer_1_1Map_a419096dd4589e51c22b12018b8d9cbc1}
 
 
 Get a specific region. 
@@ -264,11 +263,11 @@ Get a specific region.
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!get\+Regions@{get\+Regions}}
 \index{get\+Regions@{get\+Regions}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{get\+Regions()}{getRegions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$std\+::shared\+\_\+ptr$<${\bf Region}$>$ $>$ Overseer\+::\+Map\+::get\+Regions (
+\subsubsection[{\texorpdfstring{get\+Regions()}{getRegions()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::shared\+\_\+ptr$<$ {\bf Region} $>$ $>$ Overseer\+::\+Map\+::get\+Regions (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_aebe6ebfce6f851c0f2e9cb86aaad9ade}{}\label{classOverseer_1_1Map_aebe6ebfce6f851c0f2e9cb86aaad9ade}
+)}\hypertarget{classOverseer_1_1Map_a90e9f9fd99091c142c4f07c5dc2ae7a3}{}\label{classOverseer_1_1Map_a90e9f9fd99091c142c4f07c5dc2ae7a3}
 
 
 Gets all the regions found. 
@@ -278,11 +277,11 @@ vector of region pointers.
 \end{DoxyReturn}
 \index{Overseer\+::\+Map@{Overseer\+::\+Map}!Get\+Tile@{Get\+Tile}}
 \index{Get\+Tile@{Get\+Tile}!Overseer\+::\+Map@{Overseer\+::\+Map}}
-\subsubsection[{\texorpdfstring{Get\+Tile(sc2\+::\+Point2\+D pos)}{GetTile(sc2::Point2D pos)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<${\bf Tile}$>$ Overseer\+::\+Map\+::\+Get\+Tile (
+\subsubsection[{\texorpdfstring{Get\+Tile(sc2\+::\+Point2\+D pos)}{GetTile(sc2::Point2D pos)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Tile} $>$ Overseer\+::\+Map\+::\+Get\+Tile (
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Point2D}]{pos}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a12059a2ddd7ecc91c2a7bd643bae6813}{}\label{classOverseer_1_1Map_a12059a2ddd7ecc91c2a7bd643bae6813}
+)}\hypertarget{classOverseer_1_1Map_a7df832c0a80c21cd79a18df2158f3989}{}\label{classOverseer_1_1Map_a7df832c0a80c21cd79a18df2158f3989}
 
 
 Gets a tile based on the position. 
@@ -301,7 +300,7 @@ the found tile.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70988fccd3af9}{}\label{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70988fccd3af9}
+)}\hypertarget{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70988fccd3af9}{}\label{classOverseer_1_1Map_a9e3000cfd9170cc7f6a70988fccd3af9}
 
 
 Get all tile positions. 
@@ -315,7 +314,7 @@ the tile position container.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a803fae03c7ba59500f55c05dbc269c34}{}\label{classOverseer_1_1Map_a803fae03c7ba59500f55c05dbc269c34}
+) const}\hypertarget{classOverseer_1_1Map_a803fae03c7ba59500f55c05dbc269c34}{}\label{classOverseer_1_1Map_a803fae03c7ba59500f55c05dbc269c34}
 
 
 Gets the map width. 
@@ -329,7 +328,7 @@ the width.
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Agent $\ast$}]{bot}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}{}\label{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}
+)}\hypertarget{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}{}\label{classOverseer_1_1Map_a5fe859c4edbfc92971ad2ad38d69ff90}
 
 
 set the bot into overseer 
@@ -345,7 +344,7 @@ set the bot into overseer
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a29777413d8ac109aeb6f974a7b2fc25c}{}\label{classOverseer_1_1Map_a29777413d8ac109aeb6f974a7b2fc25c}
+)}\hypertarget{classOverseer_1_1Map_a29777413d8ac109aeb6f974a7b2fc25c}{}\label{classOverseer_1_1Map_a29777413d8ac109aeb6f974a7b2fc25c}
 
 
 Gets the size of the tile position container. 
@@ -359,7 +358,7 @@ the size of container.
 \begin{DoxyParamCaption}
 \item[{sc2\+::\+Point2D}]{pos}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classOverseer_1_1Map_a0cd63b3a16beab9b4cf01aa1b6adad8f}{}\label{classOverseer_1_1Map_a0cd63b3a16beab9b4cf01aa1b6adad8f}
+) const}\hypertarget{classOverseer_1_1Map_a0cd63b3a16beab9b4cf01aa1b6adad8f}{}\label{classOverseer_1_1Map_a0cd63b3a16beab9b4cf01aa1b6adad8f}
 
 
 Check if a position is on map. 
@@ -369,6 +368,7 @@ True if position is within the map, false otherwise.
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Map.\+h\end{DoxyCompactItemize}
+/home/mejan/src/commandcenter/src/\+Overseer/src/Map.\+h\item 
+/home/mejan/src/commandcenter/src/\+Overseer/src/Map.\+cpp\end{DoxyCompactItemize}

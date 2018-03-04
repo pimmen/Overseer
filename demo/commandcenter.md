@@ -33,7 +33,7 @@ file(GLOB BOT_SOURCES "*.cpp"  "*.h" "*.hpp")
 to
 
 ```
-file(GLOB BOT_SOURCES "*.cpp" "*.h" "*.hpp" "Overseer/*.cpp" "Overseer/*.h" "Overseer/*.hpp")
+file(GLOB BOT_SOURCES "*.cpp" "*.h" "*.hpp" "Overseer/src/*.cpp" "Overseer/src/*.h" "Overseer/src/*.hpp")
 ```
 
 then save the file. **Note:** Now we have change so cmake will look within the *Overseer* directory for file to compile as well.
@@ -47,7 +47,7 @@ Open with your text-editor/IDE the file MapTools.h and add the lines shown by co
 ```c++
 #pragma once
 
-#include "Overseer/MapImpl.h" //ADD THIS LINE (OVERSEER)
+#include "Overseer/src/MapImpl.h" //ADD THIS LINE (OVERSEER)
 #include <vector>
 #include "DistanceMap.h"
 #include "UnitType.h"

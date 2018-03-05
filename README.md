@@ -11,7 +11,7 @@ Demo for commandcenter is found [here.](https://github.com/pimmen89/Overseer/blo
 
 Include the file `MapImpl.h` into your project to get started.
 
-`#include "Overseer/MapImpl.h"`
+`#include "Overseer/src/MapImpl.h"`
 
 You need to pass a pointer to your Agent to the map to have it fully configured. Then you need to call `Intialize()` to construct the map.
 Now you're good to go! This is how it would look on Interloper LE

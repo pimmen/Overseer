@@ -1,13 +1,13 @@
 # Overseer
 
 
-[![Overseer](http://images.ctrustnetwork.com/static_pages/gaming/starcraft/unit_images_white/starcraft.2.overseer.png)](#features)
+![alt text][img1]
 
-Library for analyzing Starcraft 2 maps by region decomposition. Based on the [Brood War Easy Map architecture](http://bwem.sourceforge.net/) created by Igor Dimitrijevic. It uses the MIT license.
+Library for analyzing Starcraft 2 maps by region decomposition. Based on the [Brood War Easy Map architecture][1] created by Igor Dimitrijevic. It uses the MIT license.
 
 ## Getting started
 
-Demo for commandcenter is found [here.](https://github.com/pimmen89/Overseer/blob/master/demo/commandcenter.md)
+Demo for Commandcenter [is found here.][2] Which is a very short demo just to get started.
 
 Include the file `MapImpl.h` into your project to get started.
 
@@ -43,12 +43,18 @@ Overseer is currently under construction. Feel free to make a pull request!
 
 ## Documentation
 
-The documentation is for local use only and can be found [here.](https://mejan.github.io) To open it on your local machine go into the doc/html/ and open index.html in your webbrowser.
+The documentation is for local use only and can be [found here.][3] To open it on your local machine go into the doc/html/ and open index.html in your webbrowser.
 
 ## License
 
-The license for this software (Overseer) can be found [here.](https://github.com/pimmen89/Overseer/blob/master/LICENSE.md)
+The license for this software (Overseer) can be found [here.][4]
 
 ### Third party software license
 
 * [Boost Software License Version 1.0](http://www.boost.org/LICENSE_1_0.txt): Used in Spatial c++ library
+
+[1]: http://bwem.sourceforge.net/
+[2]: https://github.com/pimmen89/Overseer/blob/master/demo/commandcenter.md
+[3]: https://mejan.github.io
+[4]: https://github.com/pimmen89/Overseer/blob/master/LICENSE.md
+[img1]: http://images.ctrustnetwork.com/static_pages/gaming/starcraft/unit_images_white/starcraft.2.overseer.png "Image of overseer"

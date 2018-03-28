@@ -133,4 +133,4 @@ Number of regions: 18
 
 ## Overseer
 
-**Note:** Overseer has a lot more to offer then what has been shown in this demo all of which is shown in the [documentation for overseer.](https://github.com/pimmen89/Overseer/tree/master/doc/html)
+**Note:** Overseer has a lot more to offer then what has been shown in this demo all of which is shown in the [documentation for overseer.](https://github.com/pimmen/Overseer/tree/master/doc/html)

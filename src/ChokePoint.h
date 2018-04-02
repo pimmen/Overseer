@@ -3,7 +3,7 @@
 
 #include "Region.h"
 #include "Graph.h"
-
+#include <tuple>
 #include <utility>
 
 namespace Overseer{
@@ -25,7 +25,7 @@ namespace Overseer{
             * \param region2 is a adjecent region to region1
             * \param tilePositions is the "limits" between region1 and region2
             */
-            ChokePoint(Graph* graph, const Region* region1, const Region* region2, std::vector<TilePosition> tilePositions);
+            ChokePoint(Graph* graph, const Region* region1, const Region* region2, size_t cp_id, std::vector<TilePosition> tilePositions);
 
             /**
             * \brief Gets the position of Neutral units (according to Blizzard's sc2api)
@@ -62,6 +62,10 @@ namespace Overseer{
             */
             std::vector<sc2::Point2D> getPoints();
 
+            std::tuple<size_t, size_t, size_t> getId() const { return m_id; }
+
+            
+
         private:
             /**
             * \brief Get the graph of the chokepoint
@@ -70,6 +74,7 @@ namespace Overseer{
             */
             Graph* GetGraph();
 
+            std::tuple<size_t, size_t, size_t> m_id;
             std::pair<const Region *, const Region *> m_regions;
             std::vector<UnitPosition> m_neutralUnitPositions;
             std::vector<TilePosition> m_tilePositions;

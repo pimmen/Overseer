@@ -4,6 +4,7 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <memory>
 #include <iostream>
 #include <algorithm>
 
@@ -20,6 +21,13 @@ namespace Overseer{
 
     typedef std::pair<sc2::Point2D, std::shared_ptr<Tile>> TilePosition;
     typedef std::pair<sc2::Point2D, sc2::Unit *> UnitPosition;
+    typedef std::pair<sc2::Point2D, sc2::Point2D> PointPair;
+
+    struct ComparePointPairs{
+        bool operator()(const PointPair &l, const PointPair &r) const {
+            return (l.first.x == r.first.x) && (l.first.y == r.first.y) && (l.second.x == r.second.x) && (l.second.y == r.second.y);
+        }
+    };
 
     /**
     * \struct GreaterTile Region.h "Region.h"
@@ -76,6 +84,8 @@ namespace Overseer{
             * \return The number of tile positiions within the region.
             */
             size_t getArea() const;
+
+            void setPointDistances(std::map<PointPair, float, ComparePointPairs> pointDistances) { m_pointDistances = pointDistances; }
             
             /**
             * \brief Returns the edges of the region
@@ -164,8 +174,11 @@ namespace Overseer{
             std::vector<RegionEdge> m_edges;
             std::vector<UnitPosition> m_neutralUnitPositions;
             
-            float m_largestDistUnpathable;
             sc2::Point2D m_midPoint;
+            
+            std::map<PointPair, float, ComparePointPairs> m_pointDistances;
+
+            float m_largestDistUnpathable;
             size_t m_id;
     };
 

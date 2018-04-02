@@ -9,8 +9,6 @@
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"
 
-#include <memory>
-
 
 namespace Overseer{
 
@@ -153,6 +151,8 @@ namespace Overseer{
             * \return vector of rawfrontier.
             */
             RawFrontier getRawFrontier();
+
+            sc2::Agent* getBot() { return m_bot; }
             
         protected:
             

@@ -11,7 +11,7 @@ namespace Overseer{
 
     /**
     * \class MapImpl MapImpl.h "MapImpl.h"
-    * \brief The interface towards the map.
+    * \ brief hejsan svejsan
     */
     class MapImpl : public Map {
         public:

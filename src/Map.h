@@ -25,7 +25,7 @@ namespace Overseer{
 
     typedef spatial::box_multimap<2, sc2::Point2D, std::shared_ptr<Tile>, spatial::accessor_less<point2d_accessor, sc2::Point2D>> TilePositionContainer;
     typedef spatial::box_multimap<2, sc2::Point2D, sc2::Unit*, spatial::accessor_less<point2d_accessor, sc2::Point2D>> UnitPositionContainer;
-    typedef std::map<size_t,std::shared_ptr<Region>> RegionMap;
+    typedef std::map<size_t, std::shared_ptr<Region>> RegionMap;
     typedef std::map<std::pair<size_t,size_t>, std::vector<TilePosition>> RawFrontier;
 
     class Graph;

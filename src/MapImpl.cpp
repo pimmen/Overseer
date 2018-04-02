@@ -44,11 +44,15 @@ namespace Overseer{
 
     void MapImpl::CreateTiles() {
 
+        std::cout << "Unit list size: " << unitList.size() << std::endl;
+
         for (size_t x(0); x < m_width; ++x) {
 
             for (size_t y(0); y < m_height; ++y) {
-                sc2::Point2D pos(x,y);            
+                sc2::Point2D pos(x,y);
                 bool buildable = (m_bot->Observation()->IsPlacable(pos) || m_bot->Observation()->IsPathable(pos));
+                TileTerrain set;
+
                 std::shared_ptr<Tile> tile = std::make_shared<Tile>();
                 tile->setBuildable(buildable);
                 tile->setRegionId(0);
@@ -91,10 +95,10 @@ namespace Overseer{
 
     std::vector<Region> MapImpl::ComputeTempRegions() {
         std::vector<Region> tmp_regions(1);
-        
+
         for(auto& buildableTile: m_buildableTiles) {
             std::pair<size_t, size_t> neighboringRegions = findNeighboringRegions(buildableTile);
-            
+
             if(!neighboringRegions.first) {
                 //std::cout << "New region " << tmp_regions.size() << std::endl;
                 tmp_regions.emplace_back((size_t) tmp_regions.size(), buildableTile);

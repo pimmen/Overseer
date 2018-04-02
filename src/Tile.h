@@ -4,6 +4,16 @@
 #include <cstdio>
 
 namespace Overseer{
+
+    enum TileTerrain{
+        buildAndPath,
+        build,
+        path,
+        mineral,
+        gas,
+        destructable,
+        unpathable
+    };
     
     /**
     * \class Tile Tile.h "Tile.h"
@@ -16,7 +26,7 @@ namespace Overseer{
             *
             * \return true is tile is buildable, false otherwise
             */
-            bool Buildable();
+            TileTerrain getTileTerrain();
             
             /**
             * \brief Get the z-axis value for the tile.
@@ -28,14 +38,14 @@ namespace Overseer{
             /**
             * \brief corently not used...
             */
-            bool Doodad();
+            // bool Doodad();
             
             /**
             * \brief Set a tile to buildable.
             *
             * \param buildable boolean value, true if buildable and false otherwise.
             */
-            void setBuildable(bool buildable);
+            void setTileTerrain(TileTerrain path);
             
             /**
             * \brief Set a distance to the nearest unpathable tile.
@@ -64,18 +74,22 @@ namespace Overseer{
             * \return regionid
             */
             size_t getRegionId();
+
+            /**
+            * \brief Check if the tile contain neutral unit, e.g. gas, miniral and destroable
+            */
+            bool isNeutral();
             
         private:
-            struct TileInfo {
-                TileInfo();
-                bool            buildable:true;
-                size_t          groundHeight:2;
-                bool            doodad:true;
+            struct m_tileInfo {
+                m_tileInfo();
+                TileTerrain     terrain;
+                size_t          groundHeight;
             };
-            
+
             size_t m_regionId;
             float m_distNearestUnpathable;
-            TileInfo m_tileInfo;
+
     };
 }
 

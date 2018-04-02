@@ -139,13 +139,16 @@ namespace Overseer{
         for(sc2::Point2D delta: {sc2::Point2D(0,-1), sc2::Point2D(0,1), sc2::Point2D(-1,0), sc2::Point2D(1,0)}) {
             if(Valid(tilePosition->first + delta)) {
                 std::shared_ptr<Tile> deltaTile = GetTile(tilePosition->first + delta);
-                if(deltaTile->Buildable()) {
+                if(deltaTile->getTileTerrain()) {
                     size_t regionId = deltaTile->getRegionId();
                     
                     if(regionId) {
+
                         if(!result.first) {
                             result.first = regionId;
+
                         } else if(result.first != regionId) {
+                            
                             if(!result.second || regionId < result.second) {
                                 result.second = regionId;
                             }

@@ -7,9 +7,9 @@ namespace Overseer{
 	****************************
 	*/
 
-	bool Tile::Buildable(){
+	TileTerrain Tile::getTileTerrain(){
 
-		return m_tileInfo.buildable;
+		return m_tileInfo.terrain;
 	}
 
 	int Tile::GroundHeight(){
@@ -17,13 +17,13 @@ namespace Overseer{
 		return m_tileInfo.groundHeight;
 	}
 
-	bool Tile::Doodad(){
+	/*bool Tile::Doodad(){
 
 		return m_tileInfo.doodad;
-	}
+	}*/
 
-	void Tile::setBuildable(bool buildable){
-		m_tileInfo.buildable = buildable;
+	void Tile::setTileTerrain(TileTerrain path){
+		m_tileInfo.terrain = terrain;
 	}
 
 	void Tile::setDistNearestUnpathable(float dist){
@@ -58,7 +58,7 @@ namespace Overseer{
 	*****************************
 	*/
 
-    Tile::TileInfo::TileInfo():buildable(false),groundHeight(0),doodad(false) {}
+    Tile::m_tileInfo::m_tileInfo():terrain(TileTerrain::unpathable),groundHeight(0)/*,doodad(false)*/{}
 
 	/*
 	****************************

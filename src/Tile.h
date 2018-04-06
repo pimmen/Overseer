@@ -11,8 +11,9 @@ namespace Overseer{
         path,
         mineral,
         gas,
+        nagaTower,
         destructable,
-        unpathable
+        flyOnly
     };
     
     /**

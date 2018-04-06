@@ -43,6 +43,7 @@ namespace Overseer{
     */
 
     void MapImpl::CreateTiles() {
+        std::unique_ptr<NeutralImpl> neutralCheck(new NeutralImpl(m_bot->Observation()));
 
         std::cout << "Unit list size: " << unitList.size() << std::endl;
 
@@ -50,14 +51,14 @@ namespace Overseer{
 
             for (size_t y(0); y < m_height; ++y) {
                 sc2::Point2D pos(x,y);
-                bool buildable = (m_bot->Observation()->IsPlacable(pos) || m_bot->Observation()->IsPathable(pos));
-                TileTerrain set;
+                TileTerrain* set = checkTerrainType(neutralCheck, pos, m_bot->Observation());
 
                 std::shared_ptr<Tile> tile = std::make_shared<Tile>();
-                tile->setBuildable(buildable);
+
+                tile->setTileTerrain(&set);
                 tile->setRegionId(0);
                 
-                if(buildable) {
+                if(*set != TileTerrain::flyOnly) {
                     m_buildableTiles.push_back(std::shared_ptr<TilePosition>(new TilePosition(std::make_pair(pos, tile))));
                 
                 } else {
@@ -90,6 +91,27 @@ namespace Overseer{
         //Push buildable tiles into k-d tree
         for(const auto& buildableTile: m_buildableTiles) {
             addTile(buildableTile->first, buildableTile->second);
+        }
+    }
+
+    TileTerrain MapImpl::checkTerrainType(std::unique_ptr<NeutralImpl>& checkWith, sc2::Point2D& pos, ObservationInterface* obs){
+        
+        if(checkWith->isMineral(pos)){
+            return new TileTerrain::mineral;
+        } else if(checkWith->isGas(pos)){
+            return new TileTerrain::gas;
+        } else if(checkWith->isDestructible(pos)){
+            return new TileTerrain::destructable;
+        } else if(checkWith->isNagaTower(pos)){
+            return new TileTerrain::nagaTower;
+        } else if(obs->IsPlacable(pos) && obs->IsPathable(pos)){
+            return new TileTerrain::buildAndPath;
+        } else if(obs->IsPathable(pos)){
+            return new TileTerrain::path;
+        } else if(obs->IsPlacable(pos)){
+            return new TileTerrain::build;
+        } else {
+            return new TileTerrain::flyOnly;
         }
     }
 

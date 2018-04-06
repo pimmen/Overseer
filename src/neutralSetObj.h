@@ -4,13 +4,13 @@
 namespace Overseer{
 
 	struct NeutralImpl{
-		NeutralImpl();
+		NeutralImpl(ObservationInterface* obs);
 
-		bool isNeutral(ObservationInterface* obs);
-		bool isMineral();
-		bool isGas();
-		bool isDestructible();
-		bool isNagaTower();
+		bool isNeutral(sc2::UNIT_TYPEID& check);
+		bool isMineral(sc2::Point2D& pos);
+		bool isGas(sc2::Point2D& pos);
+		bool isDestructible(sc2::Point2D& pos);
+		bool isNagaTower(sc2::Point2D& pos);
 
 		std::map<sc2::Point2D, sc2::UNIT_TYPEID> neutralUnits;
 	};

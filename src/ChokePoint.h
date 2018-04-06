@@ -14,6 +14,7 @@ namespace Overseer{
     * \class ChokePoint ChokePoint.h "ChokePoint.h"
     * \brief Class that is used as a chokepoint container with size and positioning on the map.
     */
+
     class ChokePoint {
         public:
 
@@ -63,6 +64,10 @@ namespace Overseer{
             std::vector<sc2::Point2D> getPoints();
 
             std::tuple<size_t, size_t, size_t> getId() const { return m_id; }
+
+            bool operator==(const ChokePoint& rhs) {
+                return this->getId() == rhs.getId();
+            }
 
             
 

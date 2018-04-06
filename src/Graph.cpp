@@ -21,7 +21,47 @@ namespace Overseer{
         return m_ChokePointsMatrix[region_id_b][region_id_a];
     }
 
-    ChokePoint Graph::getChokePoint(std::tuple<size_t, size_t, size_t> cp_id) const {
+    std::vector<ChokePoint> Graph::getChokePoints() const {
+        std::vector<ChokePoint> choke_points;
+        std::vector<std::tuple<size_t, size_t, size_t>> ids;
+        for (int i = 1; i <= num_regions; ++i) {
+            for (int j = i + 1; j < num_regions; ++j) {
+                std::vector<ChokePoint> ij_choke_points = getChokePoints(i, j);
+                std::cout << "Number of chokepoints between " << i << ", " << j << ": " << ij_choke_points.size() << std::endl;
+                for(auto const& ij_cp : ij_choke_points) {
+                    bool id_exists = false;
+                    for(auto const& id : ids) {
+                        std::tuple<size_t, size_t, size_t> ij_id = ij_cp.getId();
+
+                        size_t id_1 = std::get<0>(id);
+                        size_t id_2 = std::get<1>(id);
+                        size_t id_3 = std::get<2>(id);
+                        size_t ij_id_1 = std::get<0>(ij_id);
+                        size_t ij_id_2 = std::get<1>(ij_id);
+                        size_t ij_id_3 = std::get<2>(ij_id);
+
+                        if(id == ij_id) {
+                            // std::cout << "(" << id_1 << ", " << id_2 << ", " << id_3 << ") == (" 
+                            // << ij_id_1 << ", " << ij_id_2 << ", " << ij_id_3 << ")" << std::endl;
+
+                            id_exists = true;
+                        } else {
+                            // std::cout << "(" << id_1 << ", " << id_2 << ", " << id_3 << ") != (" 
+                            // << ij_id_1 << ", " << ij_id_2 << ", " << ij_id_3 << ")" << std::endl;
+                        }
+                    }
+                    if(!id_exists) {
+                        choke_points.push_back(ij_cp);
+                        ids.push_back(ij_cp.getId());
+                    }
+                }
+                //choke_points.insert(choke_points.end(), ij_choke_points.begin(), ij_choke_points.end());
+            }
+        }
+        return choke_points;
+    }
+
+    ChokePoint Graph::getChokePoint(ChokePointId cp_id) const {
         size_t region_id_a = std::get<0>(cp_id);
         size_t region_id_b = std::get<1>(cp_id);
         size_t cp_pos = std::get<2>(cp_id);
@@ -39,10 +79,13 @@ namespace Overseer{
         num_regions = p_map->getRegions().size();
         
         std::vector<ChokePoint> chokePoints;
-        std::vector<std::deque<TilePosition>> clusters;
+        
+        num_chokePoints = 0;
         
         for(auto const & frontierByRegionPair : p_map->getRawFrontier()) {
             //Flag to signify if the frontierPosition was added to cluster
+
+            std::vector<std::deque<TilePosition>> clusters;
             
             size_t regionIdA = frontierByRegionPair.first.first;
             size_t regionIdB = frontierByRegionPair.first.second;
@@ -75,6 +118,8 @@ namespace Overseer{
                     clusters.push_back(clusterPositions);
                 }
             }
+
+            std::cout << "Number of dicsovered chokePoints: " << clusters.size() << std::endl;
             
             size_t num_clusters = 0;
             for(auto cluster : clusters) {
@@ -87,6 +132,8 @@ namespace Overseer{
                 }
                 
                 ChokePoint cp(this, p_map->getRegion(regionIdA), p_map->getRegion(regionIdB), num_clusters, clusterPositions);
+                sc2::Point2D cp_point = cp.getMidPoint();
+                std::cout << "Added chokepoint at: " << cp_point.x << ", " << cp_point.y << std::endl;
                 chokePoints.emplace_back(cp);
 
                 num_clusters++;
@@ -97,6 +144,13 @@ namespace Overseer{
         ComputeAdjacencyMatrix(chokePoints);
         InitializeChokePointsDistanceMatrix(chokePoints);
 
+        std::cout << "Number of chokepoints: " << num_chokePoints << std::endl;
+        std::cout << "Number of chokepoints calculated: " << getChokePoints().size() << std::endl;
+
+        // std::tuple<size_t, size_t, size_t> a = std::make_tuple(1, 1, 1);
+        // std::tuple<size_t, size_t, size_t> b = std::make_tuple(1, 1, 1);
+        // std::cout << "Is a = b? " << (a == b) << std::endl;
+
         //ComputeRegionPointDistances(p_map->getRegions());
     }
 
@@ -106,6 +160,8 @@ namespace Overseer{
         for(size_t i = 1; i <= num_regions; ++i) {
             m_ChokePointsMatrix[i].resize(i);
         }
+
+        std::cout << "Number of chokePoints: " << chokePoints.size() << std::endl;
 
         for(auto & chokePoint : chokePoints) {
             size_t region_id_a = chokePoint.getRegions().first->getId();
@@ -184,10 +240,12 @@ namespace Overseer{
 
         visited_cp.push_back(cp_a);
 
-        std::map<std::tuple<size_t, size_t, size_t>, float> g_score;
-        std::priority_queue<astar_node> f_scores;
+        std::map<ChokePointId, float> g_score;
+        std::map<ChokePointId, float> f_score;
+        std::priority_queue<astar_node> cp_pq;
 
-        std::map<std::tuple<size_t, size_t, size_t>, ChokePoint> came_from;
+        std::map<ChokePointId, ChokePointId> came_from;
+
 
 
         return total_path;

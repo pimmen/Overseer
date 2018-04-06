@@ -1,10 +1,7 @@
 #ifndef _OVERSEER_MAP_H_
 #define _OVERSEER_MAP_H_
 
-#include "ChokePoint.h"
-#include "Graph.h"
 #include "Region.h"
-
 #include "spatial/box_multimap.hpp"
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"

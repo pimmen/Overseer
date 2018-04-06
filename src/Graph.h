@@ -4,22 +4,23 @@
 #include "Map.h"
 #include "ChokePoint.h"
 #include "Region.h"
+#include <algorithm>
 
 namespace Overseer{
 
     class ChokePoint;
-    class Map;
 
     typedef std::vector<ChokePoint> CPPath;
+    typedef std::tuple<size_t, size_t, size_t> ChokePointId;
 
     struct astar_node {
-        ChokePoint cp;
-        float f_score;
-    };
+        ChokePointId choke_point_id;
+        float heuristic;
 
-    bool operator<(const astar_node& lhs, const astar_node& rhs) {
-        return lhs.f_score < rhs.f_score;
-    }
+        bool operator<(const astar_node& rhs) {
+            return this->heuristic < rhs.heuristic;
+        }
+    };
     
     /**
     * \class Graph Graph.h "Graph.h"
@@ -49,7 +50,9 @@ namespace Overseer{
             */
             std::vector<ChokePoint> getChokePoints(size_t region_id_a, size_t region_id_b) const;
 
-            ChokePoint getChokePoint(std::tuple<size_t, size_t, size_t> cp_id) const;
+            std::vector<ChokePoint> getChokePoints() const;
+
+            ChokePoint getChokePoint(ChokePointId cp_id) const;
 
             float EuclideanDistance(sc2::Point2D p1, sc2::Point2D p2) const {
                 float x_dist = std::abs(p1.x - p2.x);

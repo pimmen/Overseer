@@ -25,7 +25,7 @@ namespace Overseer{
         std::vector<ChokePoint> choke_points;
         std::vector<std::tuple<size_t, size_t, size_t>> ids;
         for (int i = 1; i <= num_regions; ++i) {
-            for (int j = i + 1; j < num_regions; ++j) {
+            for (int j = i + 1; j <= num_regions; ++j) {
                 std::vector<ChokePoint> ij_choke_points = getChokePoints(i, j);
                 std::cout << "Number of chokepoints between " << i << ", " << j << ": " << ij_choke_points.size() << std::endl;
                 for(auto const& ij_cp : ij_choke_points) {
@@ -77,6 +77,12 @@ namespace Overseer{
 
     void Graph::CreateChokePoints() {
         num_regions = p_map->getRegions().size();
+
+        m_ChokePointsMatrix.resize(num_regions + 1);
+
+        for(size_t i = 1; i <= num_regions; ++i) {
+            m_ChokePointsMatrix[i].resize(i);
+        }
         
         std::vector<ChokePoint> chokePoints;
         
@@ -87,8 +93,13 @@ namespace Overseer{
 
             std::vector<std::deque<TilePosition>> clusters;
             
-            size_t regionIdA = frontierByRegionPair.first.first;
-            size_t regionIdB = frontierByRegionPair.first.second;
+            size_t region_id_a = frontierByRegionPair.first.first;
+            size_t region_id_b = frontierByRegionPair.first.second;
+
+            if (region_id_a > region_id_b) {
+                std::swap(region_id_a, region_id_b);
+            }
+
             std::vector<TilePosition> frontierPositions = frontierByRegionPair.second;
             
             std::sort(frontierPositions.begin(), frontierPositions.end(), GreaterTileInstance());
@@ -131,18 +142,22 @@ namespace Overseer{
                     cluster.pop_front();
                 }
                 
-                ChokePoint cp(this, p_map->getRegion(regionIdA), p_map->getRegion(regionIdB), num_clusters, clusterPositions);
+                ChokePoint cp(this, p_map->getRegion(region_id_a), p_map->getRegion(region_id_b), num_clusters, clusterPositions);
                 sc2::Point2D cp_point = cp.getMidPoint();
+
+                m_ChokePointsMatrix[region_id_b][region_id_a].push_back(cp);
+
                 std::cout << "Added chokepoint at: " << cp_point.x << ", " << cp_point.y << std::endl;
-                chokePoints.emplace_back(cp);
+                std::cout << "Region pair: " << region_id_a << ", " << region_id_b << std::endl;
+                //chokePoints.emplace_back(cp);
 
                 num_clusters++;
             }
             
         }
         
-        ComputeAdjacencyMatrix(chokePoints);
-        InitializeChokePointsDistanceMatrix(chokePoints);
+        //ComputeAdjacencyMatrix(chokePoints);
+        //InitializeChokePointsDistanceMatrix(chokePoints);
 
         std::cout << "Number of chokepoints: " << num_chokePoints << std::endl;
         std::cout << "Number of chokepoints calculated: " << getChokePoints().size() << std::endl;
@@ -155,11 +170,6 @@ namespace Overseer{
     }
 
     void Graph::ComputeAdjacencyMatrix(std::vector<ChokePoint> chokePoints) {
-        m_ChokePointsMatrix.resize(num_regions + 1);
-
-        for(size_t i = 1; i <= num_regions; ++i) {
-            m_ChokePointsMatrix[i].resize(i);
-        }
 
         std::cout << "Number of chokePoints: " << chokePoints.size() << std::endl;
 

@@ -40,7 +40,7 @@ namespace Overseer{
             *
             * \return pair containing adjecent regions with chokepoint between them
             */
-            std::pair<const Region *, const Region *> & getRegions();
+            std::pair<const Region *, const Region *> getRegions() const;
             
             /**
             * \brief Get the size of the found chokepoint

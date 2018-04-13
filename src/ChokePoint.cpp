@@ -29,12 +29,10 @@ namespace Overseer{
 	}
 
 	std::vector<UnitPosition> ChokePoint::getNeutralUnitPositions() const {
-
 		return m_neutralUnitPositions;
 	}
 
-	std::pair<const Region *, const Region *> & ChokePoint::getRegions(){
-
+	std::pair<const Region *, const Region *> ChokePoint::getRegions() const{
 		return m_regions;
 	}
 

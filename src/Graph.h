@@ -14,11 +14,23 @@ namespace Overseer{
     typedef std::tuple<size_t, size_t, size_t> ChokePointId;
 
     struct astar_node {
+        astar_node(ChokePointId cp_id, float h) {
+            choke_point_id = cp_id;
+            heuristic = h;
+        }
+
         ChokePointId choke_point_id;
         float heuristic;
 
         bool operator<(const astar_node& rhs) {
             return this->heuristic < rhs.heuristic;
+        }
+    };
+
+    class Compare{
+    public:
+        bool operator() (astar_node lhs, astar_node rhs){
+            return lhs.heuristic < rhs.heuristic;
         }
     };
     
@@ -86,7 +98,6 @@ namespace Overseer{
 
         private:
             size_t num_regions;
-            size_t num_chokePoints;
             Map *p_map;
             std::vector<std::vector<std::vector<ChokePoint>>> m_ChokePointsMatrix;
             std::vector<std::vector<float>> m_ChokePointsDistanceMatrix;
@@ -111,6 +122,10 @@ namespace Overseer{
             }
 
             CPPath Astar(ChokePoint cp_a, ChokePoint cp_b);
+
+            void print_cp_id(ChokePointId cp_id) {
+                std::cout << "(" << std::get<0>(cp_id) << ", " << std::get<0>(cp_id) << ", " << std::get<0>(cp_id) << ")" << std::endl;
+            }
 
             static const size_t min_cluster_distance = 17;
     };

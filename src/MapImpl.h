@@ -3,7 +3,7 @@
 
 #include "Graph.h"
 #include "Map.h"
-#include "neutralSelObj.h"
+#include "neutralSetObj.h"
 #include "spatial/box_multimap.hpp"
 #include "spatial/neighbor_iterator.hpp"
 #include "spatial/ordered_iterator.hpp"
@@ -47,7 +47,7 @@ namespace Overseer{
             void ComputeAltitudes();
 
             // Used to check the type of "object" on the possition.
-            TileTerrain checkTerrainType(std::unique_ptr<NeutralImpl>& checkWith, sc2::Point2D& pos, ObservationInterface* obs);
+            TileTerrain checkTerrainType(std::unique_ptr<NeutralImpl>& checkWith, sc2::Point2D& pos, sc2::ObservationInterface* obs);
             
             //Iterate over all tiles, starting with those furthest away from unpathables (probable candidates for region centers), and add to neighboring region
             //Create new region if no neighboring region is found, if two are found merge the smaller into the larger or create frontier

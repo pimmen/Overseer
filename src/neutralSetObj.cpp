@@ -3,24 +3,24 @@
 
 namespace Overseer{
 	
-	NeutralImpl::NeutralImpl(ObservationInterface* obs):unitList(){
+	NeutralImpl::NeutralImpl(sc2::ObservationInterface* obs):neutralUnits(){
 
 		for(auto& u: obs->GetUnits()){
 
-			if( u.alliance == sc2::Unit::Alliance::Neutral){
-				if(isNeutral(u.unit_type)){
-					sc2::Point2D pos(u.pos.x, u.pos.y);
-					neutralUnits[pos] = u.unit_type;
+			if( u->alliance == sc2::Unit::Alliance::Neutral){
+				if(isNeutral(&u->unit_type)){
+					sc2::Point2D pos(u->pos.x, u->pos.y);
+					neutralUnits[pos] = u->unit_type;
 				} else{
 					
 				}
 			}
 		}
 	}
-	
-	bool NeutralImpl::isNeutral(sc2::UNIT_TYPEID& check){
-		
-		switch(check){
+
+	bool NeutralImpl::isNeutral(const sc2::UNIT_TYPEID* check){
+
+		switch(*check){
 			case sc2::UNIT_TYPEID::NEUTRAL_BATTLESTATIONMINERALFIELD: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_BATTLESTATIONMINERALFIELD750: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_LABMINERALFIELD: return true;
@@ -46,7 +46,7 @@ namespace Overseer{
 			case sc2::UNIT_TYPEID::NEUTRAL_COLLAPSIBLETERRANTOWERDIAGONAL: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_COLLAPSIBLETERRANTOWERPUSHUNIT: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_COLLAPSIBLETERRANTOWERPUSHUNITRAMPLEFT: return true;
-			case sc2::UNIT_TYPEID::NEUTRAL_COLLAPSIBLETERRANTOWERPUSHUNITRAMPRIGHT: return true;
+			case sc2::UNIbT_TYPEID::NEUTRAL_COLLAPSIBLETERRANTOWERPUSHUNITRAMPRIGHT: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_DEBRISRAMPLEFT: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_DEBRISRAMPRIGHT: return true;
 			case sc2::UNIT_TYPEID::NEUTRAL_DESTRUCTIBLEDEBRIS6X6: return true;
@@ -64,7 +64,7 @@ namespace Overseer{
 	}
 
 	bool NeutralImpl::isMineral(sc2::Point2D& pos){
-		
+
 		if(neutralUnits.find(pos) == neutralUnits.end()){
 			return false;
 		}
@@ -145,6 +145,4 @@ namespace Overseer{
 
 		return false;
 	}
-
-	bool NeutralImpl::isBuildable(pos)
 }

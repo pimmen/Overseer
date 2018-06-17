@@ -1,5 +1,6 @@
-# Overseer
+## This project has been [moved to Gitlab(https://gitlab.com/OverStarcraft/Overseer). Thanks everyone for the attention we've gotten here, we hope you'll follow and stay updated! /mejan, pimmen
 
+# Overseer
 
 ![alt text][img1]
 
